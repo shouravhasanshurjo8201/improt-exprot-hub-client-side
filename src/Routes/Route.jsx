@@ -7,6 +7,8 @@ import Login from "../Pages/Login/Login";
 import Profile from "../Pages/Profile/Profile";
 import SignUp from "../Pages/SignUp/SignUp";
 import UpdateProfile from "../Pages/Profile/UpdateProfile";
+import ForgetPassword from "../Pages/ForgetPassword/ForgetPassword";
+import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
     {
@@ -27,7 +29,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "Profile",
-                element: <Profile />,
+                element: <ProtectedRoute><Profile /></ProtectedRoute>,
             },
             {
                 path: "SignUp",
@@ -36,6 +38,10 @@ const router = createBrowserRouter([
             {
                 path: "UpdateProfile",
                 element: <UpdateProfile />,
+            },
+            {
+                path: "ForgetPassword",
+                element: <ForgetPassword />,
             },
             
             {
