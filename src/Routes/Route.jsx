@@ -13,6 +13,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import ProductDetailPage from "../Pages/ProductDetailPage/ProductDetailPage";
 import MyImports from "../Pages/MyImports/MyImports";
 import AddExportProduct from "../Pages/AddExportProduct/AddExportProduct";
+import MyExports from "../Pages/MyExports/MyExports";
 
 const router = createBrowserRouter([
     {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
             {
                 path: "MyImports",
                 element: <MyImports />,
+            },
+            {
+                path: "MyExports",
+                element: <MyExports />,
             },
             {
                 path: "AddExportProduct",

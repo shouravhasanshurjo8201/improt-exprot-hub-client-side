@@ -73,7 +73,7 @@ const Login = () => {
   }
 
   return (
-    <div className='flex flex-col justify-center items-center flex-1 min-h-screen bg-emerald-100'>
+    <div className='flex flex-col justify-center items-center flex-1 min-h-screen'>
       <div data-aos="fade-up" className='container mx-auto '>
         <div className='flex flex-col justify-center items-center p-5' >
           <div className=" bg-emerald-300 border-base-200 rounded-box w-xs border p-4 text-white">

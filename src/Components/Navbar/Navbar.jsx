@@ -13,6 +13,7 @@ const Navbar = () => {
         <li><NavLink to='/' className={activeClass}>Home</NavLink></li>
         <li><NavLink to='/Products' className={activeClass}>Products</NavLink></li>
         <li><NavLink to='/MyImports' className={activeClass}>MyImports</NavLink></li>
+        <li><NavLink to='/MyExports' className={activeClass}>MyExports</NavLink></li>
         <li><NavLink to='/AddExportProduct' className={activeClass}>AddExportProduct</NavLink></li>
         <li><NavLink to='/Profile' className={activeClass}>Profile </NavLink></li>
         <li><NavLink to='/Login' className={activeClass}>Login </NavLink></li>
@@ -77,7 +78,7 @@ const Navbar = () => {
 
                     <div>
                         <NavLink to="/">
-                            <img src='https://i.postimg.cc/3xy2DgXJ/download-22.jpg' alt="Logo" className="h-15 w-20" />
+                            <img src='https://i.postimg.cc/76q5CNLv/download-14.jpg' alt="Logo" className="h-15 w-20 rounded-2xl" />
                         </NavLink>
                     </div>
                 </div>
