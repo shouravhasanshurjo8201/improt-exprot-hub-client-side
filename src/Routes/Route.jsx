@@ -11,6 +11,7 @@ import ForgetPassword from "../Pages/ForgetPassword/ForgetPassword";
 import ProtectedRoute from "./ProtectedRoute";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import ProductDetailPage from "../Pages/ProductDetailPage/ProductDetailPage";
+import MyImports from "../Pages/MyImports/MyImports";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             {
                 path: "Profile",
                 element: <ProtectedRoute><Profile /></ProtectedRoute>,
+            },
+            {
+                path: "MyImports",
+                element: <MyImports />,
             },
             {
                 path: "SignUp",

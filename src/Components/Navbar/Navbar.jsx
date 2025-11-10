@@ -12,6 +12,7 @@ const Navbar = () => {
     const LiLink = (<>
         <li><NavLink to='/' className={activeClass}>Home</NavLink></li>
         <li><NavLink to='/Products' className={activeClass}>Products</NavLink></li>
+        <li><NavLink to='/MyImports' className={activeClass}>MyImports</NavLink></li>
         <li><NavLink to='/Profile' className={activeClass}>Profile </NavLink></li>
         <li><NavLink to='/Login' className={activeClass}>Login </NavLink></li>
         <li><NavLink to='/SignUp' className={activeClass}>SignUp </NavLink></li>
