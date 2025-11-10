@@ -1,4 +1,4 @@
-// import CustomerTestimonials from "../../Components/CustomerTestimonials/CustomerTestimonials";
+import CustomerTestimonials from "../../Components/CustomerTestimonials/CustomerTestimonials";
 import GlobalPartners from "../../Components/GlobalPartners/GlobalPartners";
 import HeroSlider from "../../Components/HeroSlider/HeroSlider";
 import LatestProducts from "../../Components/LatestProducts/LatestProducts";
@@ -10,7 +10,7 @@ const Home = () => {
       <HeroSlider></HeroSlider>
       <LatestProducts></LatestProducts>
       <WhyChooseUs></WhyChooseUs>
-      {/* <CustomerTestimonials></CustomerTestimonials> */}
+      <CustomerTestimonials></CustomerTestimonials>
       <GlobalPartners></GlobalPartners>
     </div>
   )
