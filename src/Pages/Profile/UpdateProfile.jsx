@@ -15,13 +15,13 @@ const UpdateProfile = () => {
     const handleUpdateProfile = (e) => {
         e.preventDefault();
         updateProfile(auth.currentUser, { displayName, photoURL })
-            .then(() => {
-                setUser({ ...auth.currentUser });
-                navigate("/profile");
-            })
-            .catch((e) => {
-                toast.error(e.message)
-            })
+        .then(() => {
+            setUser({ ...auth.currentUser });
+            navigate("/profile");
+        })
+        .catch((e) => {
+            toast.error(e.message)
+        })
     }
     useEffect(() => {
         AOS.init({ duration: 2000 });
@@ -41,4 +41,4 @@ const UpdateProfile = () => {
     )
 }
 
-export default UpdateProfile
+export default UpdateProfile;

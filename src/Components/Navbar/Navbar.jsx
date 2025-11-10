@@ -17,14 +17,14 @@ const Navbar = () => {
         <li><NavLink to='/SignUp' className={activeClass}>SignUp </NavLink></li>
     </>)
     const handleLogout = () => {
-        signOut(auth)
-            .then(() => {
-                setUser(null);
-                toast.success("Logout Successful");
-            })
-            .catch((e) => {
-                toast.error(e.message)
-            })
+    signOut(auth)
+        .then(() => {
+            setUser(null);
+            toast.success("Logout Successful");
+        })
+        .catch((e) => {
+            toast.error(e.message)
+        })
     }
     return (
         <div className="bg-emerald-400 shadow-sm font-bold">
@@ -79,7 +79,6 @@ const Navbar = () => {
                         </NavLink>
                     </div>
                 </div>
-
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         {LiLink}
