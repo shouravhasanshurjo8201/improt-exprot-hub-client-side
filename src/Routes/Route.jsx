@@ -9,6 +9,7 @@ import SignUp from "../Pages/SignUp/SignUp";
 import UpdateProfile from "../Pages/Profile/UpdateProfile";
 import ForgetPassword from "../Pages/ForgetPassword/ForgetPassword";
 import ProtectedRoute from "./ProtectedRoute";
+// import Products from "../Components/Products/Products";
 
 const router = createBrowserRouter([
     {

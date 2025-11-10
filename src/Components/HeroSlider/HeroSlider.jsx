@@ -13,8 +13,8 @@ const HeroSlider = () => {
     AOS.init({ duration: 2000 });
   }, []);
   const ButtonLink = (<>
-          <Link to='/Products' className="btn btn-outline btn-accent bg-emerald-600 text-white font-bold border-none relative mx-4 py-2 px-8 text-base overflow-hidden transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-600 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] rounded-[15px] hover:before:left-0 cursor-pointer">Explore More Destinations</Link>
-      </>)
+    <Link to='/Products' className="btn btn-outline btn-accent bg-emerald-600 text-white font-bold border-none relative mx-4 py-2 px-8 text-base overflow-hidden transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-600 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] rounded-[15px] hover:before:left-0 cursor-pointer">Explore More Destinations</Link>
+  </>)
   return (
     <div data-aos="fade-up" className="w-full h-[420px] relative">
       <Swiper modules={[Pagination, Navigation, Autoplay]} spaceBetween={30} centeredSlides={true} autoplay={{ delay: 3000, disableOnInteraction: false, }} pagination={{ clickable: true }} navigation={true} className="mySwiper rounded-2xl">
@@ -91,7 +91,7 @@ const HeroSlider = () => {
                 Find the Best Global Deals
               </h1>
               <p className="text-lg max-w-2xl text-center">
-               Compare prices, quality, and suppliers from multiple countries
+                Compare prices, quality, and suppliers from multiple countries
               </p>
               <div className="my-5">{ButtonLink}</div>
             </div>
@@ -125,7 +125,7 @@ const HeroSlider = () => {
               <p className="text-lg max-w-2xl text-center">
                 Experience safe, verified, and transparent trade operations.
               </p>
-            <div className="my-5">{ButtonLink}</div>
+              <div className="my-5">{ButtonLink}</div>
             </div>
           </div>
         </SwiperSlide>
