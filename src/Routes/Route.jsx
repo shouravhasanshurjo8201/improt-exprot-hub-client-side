@@ -12,6 +12,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import ProductDetailPage from "../Pages/ProductDetailPage/ProductDetailPage";
 import MyImports from "../Pages/MyImports/MyImports";
+import AddExportProduct from "../Pages/AddExportProduct/AddExportProduct";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
             {
                 path: "MyImports",
                 element: <MyImports />,
+            },
+            {
+                path: "AddExportProduct",
+                element: <AddExportProduct />,
             },
             {
                 path: "SignUp",
