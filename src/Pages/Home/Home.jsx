@@ -1,3 +1,5 @@
+// import CustomerTestimonials from "../../Components/CustomerTestimonials/CustomerTestimonials";
+import GlobalPartners from "../../Components/GlobalPartners/GlobalPartners";
 import HeroSlider from "../../Components/HeroSlider/HeroSlider";
 import LatestProducts from "../../Components/LatestProducts/LatestProducts";
 import WhyChooseUs from "../../Components/WhyChooseUs/WhyChooseUs";
@@ -8,7 +10,8 @@ const Home = () => {
       <HeroSlider></HeroSlider>
       <LatestProducts></LatestProducts>
       <WhyChooseUs></WhyChooseUs>
-      {/* <GlobalPartners></GlobalPartners> */}
+      {/* <CustomerTestimonials></CustomerTestimonials> */}
+      <GlobalPartners></GlobalPartners>
     </div>
   )
 }
