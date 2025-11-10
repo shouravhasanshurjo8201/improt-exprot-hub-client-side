@@ -1,7 +1,6 @@
-import GlobalPartners from "../../Components/GlobalPartners";
 import HeroSlider from "../../Components/HeroSlider/HeroSlider";
 import LatestProducts from "../../Components/LatestProducts/LatestProducts";
-import WhyChooseUs from "../../Components/WhyChooseUs";
+import WhyChooseUs from "../../Components/WhyChooseUs/WhyChooseUs";
 
 const Home = () => {
   return (
@@ -9,7 +8,7 @@ const Home = () => {
       <HeroSlider></HeroSlider>
       <LatestProducts></LatestProducts>
       <WhyChooseUs></WhyChooseUs>
-      <GlobalPartners></GlobalPartners>
+      {/* <GlobalPartners></GlobalPartners> */}
     </div>
   )
 }
