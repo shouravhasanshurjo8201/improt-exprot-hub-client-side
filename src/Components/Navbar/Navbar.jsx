@@ -1,15 +1,30 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router"
+import { AuthContext } from "../../Context/AuthContext";
+import { auth } from "../../Firebase/Firebase.config";
+import toast from "react-hot-toast";
+import { signOut } from "firebase/auth";
 
 const Navbar = () => {
+    const { user, setUser } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
     const activeClass = ({ isActive }) => isActive ? 'relative mx-4 py-2 px-5 text-black text-base font-bold overflow-hidden bg-ember-100 rounded-[15px] transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[15px] hover:before:left-0 cursor-pointer' : 'mx-4 py-2 px-5 hover:scale-105 hover:text-white active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-400 before:to-blue-700 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[15px] hover:before:left-0 cursor-pointer';
     const LiLink = (<>
         <li><NavLink to='/' className={activeClass}>Home</NavLink></li>
         <li><NavLink to='/Products' className={activeClass}>Service</NavLink></li>
         <li><NavLink to='/profile' className={activeClass}>Profile </NavLink></li>
+        <li><NavLink to='/Login' className={activeClass}>Login </NavLink></li>
     </>)
-
+    const handleLogout = () => {
+        signOut(auth)
+            .then(() => {
+                setUser(null);
+                toast.success("Logout Successful");
+            })
+            .catch((e) => {
+                toast.error(e.message)
+            })
+    }
     return (
         <div className="bg-emerald-400 shadow-sm font-bold">
             <div className="container mx-auto navbar">
@@ -69,16 +84,16 @@ const Navbar = () => {
                         {LiLink}
                     </ul>
                 </div>
-                {/* <div className="navbar-end">
-                {user ? <div className="flex justify-between items-center gap-2"><NavLink to='/profile' title={user?.displayName}><img src={user?.photoURL || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr9CKuBjYUddQREnoIMeN90lel-2hbn6OsnXS86_EQpiH6_MuVM9tV0i7UBVUpsiry_xw&usqp=CAU'}
-                    onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr9CKuBjYUddQREnoIMeN90lel-2hbn6OsnXS86_EQpiH6_MuVM9tV0i7UBVUpsiry_xw&usqp=CAU';
-                    }}
-                    className="h-12 w-12 rounded-full border-3 border-emerald-600" alt="" />
-                </NavLink>
-                    <button className="btn btn-outline btn-accent bg-emerald-500 text-white font-bold border-none shadow" onClick={handleLogout}>Logout</button></div> : <NavLink to='/login' className="btn btn-outline btn-accent bg-emerald-500 text-white font-bold border-none shadow">Login</NavLink>}
-                </div> */}
+                <div className="navbar-end">
+                    {user ? <div className="flex justify-between items-center gap-2"><NavLink to='/profile' title={user?.displayName}><img src={user?.photoURL || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr9CKuBjYUddQREnoIMeN90lel-2hbn6OsnXS86_EQpiH6_MuVM9tV0i7UBVUpsiry_xw&usqp=CAU'}
+                        onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr9CKuBjYUddQREnoIMeN90lel-2hbn6OsnXS86_EQpiH6_MuVM9tV0i7UBVUpsiry_xw&usqp=CAU';
+                        }}
+                        className="h-12 w-12 rounded-full border-3 border-emerald-600" alt="" />
+                    </NavLink>
+                        <button className="btn btn-outline btn-accent bg-emerald-500 text-white font-bold border-none shadow" onClick={handleLogout}>Logout</button></div> : <NavLink to='/login' className="btn btn-outline btn-accent bg-emerald-500 text-white font-bold border-none shadow">Login</NavLink>}
+                </div>
             </div>
         </div>
     )
