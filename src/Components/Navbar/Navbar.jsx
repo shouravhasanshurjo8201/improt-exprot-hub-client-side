@@ -12,8 +12,9 @@ const Navbar = () => {
     const LiLink = (<>
         <li><NavLink to='/' className={activeClass}>Home</NavLink></li>
         <li><NavLink to='/Products' className={activeClass}>Service</NavLink></li>
-        <li><NavLink to='/profile' className={activeClass}>Profile </NavLink></li>
+        <li><NavLink to='/Profile' className={activeClass}>Profile </NavLink></li>
         <li><NavLink to='/Login' className={activeClass}>Login </NavLink></li>
+        <li><NavLink to='/SignUp' className={activeClass}>SignUp </NavLink></li>
     </>)
     const handleLogout = () => {
         signOut(auth)
