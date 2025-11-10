@@ -9,7 +9,8 @@ import SignUp from "../Pages/SignUp/SignUp";
 import UpdateProfile from "../Pages/Profile/UpdateProfile";
 import ForgetPassword from "../Pages/ForgetPassword/ForgetPassword";
 import ProtectedRoute from "./ProtectedRoute";
-// import Products from "../Components/Products/Products";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import ProductDetailPage from "../Pages/ProductDetailPage/ProductDetailPage";
 
 const router = createBrowserRouter([
     {
@@ -18,11 +19,16 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
+                errorElement: <ErrorPage />,
                 element: <Home />,
             },
             {
                 path: "Products",
                 element: <Products />,
+            },
+            {
+                path: "Products/:id",
+                element: <ProtectedRoute><ProductDetailPage/></ProtectedRoute>,
             },
             {
                 path: "Login",
