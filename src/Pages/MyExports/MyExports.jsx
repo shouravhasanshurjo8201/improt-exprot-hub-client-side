@@ -12,7 +12,7 @@ const MyExports = () => {
   // 🔹 Fetch user’s export products
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/Products?email=${user.email}`)
+      fetch(`http://localhost:3000/Products/ExporterEmail/${user.email}`)
         .then((res) => res.json())
         .then((data) => {
           setExports(data);

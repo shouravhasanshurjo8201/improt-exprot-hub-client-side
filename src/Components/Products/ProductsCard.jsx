@@ -1,8 +1,9 @@
 import { Link } from "react-router";
 
 const ProductsCard = ({ Product }) => {
+    const className ='btn btn-outline btn-accent bg-emerald-600 text-white font-bold border-none relative mx-4 py-2 px-8 text-base overflow-hidden transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-600 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] rounded-[15px] hover:before:left-0 cursor-pointer'
     const ButtonLink = (<>
-    <Link to={`/Products/${Product._id}`} className="btn btn-outline btn-accent bg-emerald-600 text-white font-bold border-none relative mx-4 py-2 px-8 text-base overflow-hidden transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-600 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] rounded-[15px] hover:before:left-0 cursor-pointer">View Details</Link>
+    <Link to={`/Products/${Product._id}`} className={className}>View Details</Link>
   </>)
     return (
         <div>

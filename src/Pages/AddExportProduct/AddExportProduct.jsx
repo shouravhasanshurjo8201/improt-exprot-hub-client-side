@@ -27,7 +27,7 @@ const AddExportProduct = () => {
       OriginCountry,
       Rating,
       AvailableQuantity,
-      Email: user?.email,
+      Exporter_Email: user?.email,
     };
 
     fetch("http://localhost:3000/Products", {

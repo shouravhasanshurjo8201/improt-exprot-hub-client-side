@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 import { useState } from "react"
 
-const useServiceData = () => {
-    const [jsonData, setJsonData] = useState([]);
+const useLatestProducts = () => {
+    const [LatestProducts, setLatestProducts] = useState([]);
     const [Loading, setLoading] = useState(true);
     const [Error, setError] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:3000/Products');
+                const response = await fetch('http://localhost:3000/Products/latest');
                 const data = await response.json();
-                setJsonData(data);
+                setLatestProducts(data);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -21,7 +21,7 @@ const useServiceData = () => {
         };
         fetchData();
     }, []);
-    return { jsonData, Loading, Error }
+    return { LatestProducts, Loading, Error }
 }
 
-export default useServiceData;
+export default useLatestProducts;

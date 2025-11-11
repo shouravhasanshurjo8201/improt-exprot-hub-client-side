@@ -3,67 +3,64 @@ import toast from "react-hot-toast";
 import LoadingPage from "../LoadingPage/LoadingPage";
 import { Link } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
-import useServiceData from "../../Hooks/UseServiceData";
 
 const MyImports = () => {
     const { user, loading } = useContext(AuthContext);
-    const { jsonData, Loading } = useServiceData();
-    const servicesDataSlice = jsonData;
-    // const [imports, setImports] = useState([]);
-    // const [isLoading, setIsLoading] = useState(true);
+    const [imports, setImports] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    // // Fetch user's imported products
-    // useEffect(() => {
-    //     if (user?.email) {
-    //         fetch(`https://your-server-url.com/my-imports?email=${user.email}`)
-    //             .then((res) => res.json())
-    //             .then((data) => {
-    //                 setImports(data);
-    //                 setIsLoading(false);
-    //             })
-    //             .catch((err) => {
-    //                 console.error(err);
-    //                 setIsLoading(false);
-    //             });
-    //     }
-    // }, [user?.email]);
+    // Fetch user's imported products
+    useEffect(() => {
+        if (user?.email) {
+            fetch(`http://localhost:3000/Products/ImporterEmail/${user.email}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    setImports(data);
+                    setIsLoading(false);
+                })
+                .catch((err) => {
+                    console.error(err);
+                    setIsLoading(false);
+                });
+        }
+    }, [user?.email]);
 
-    // // Handle Remove
-    // const handleRemove = (id) => {
-    //     if (confirm("Are you sure you want to remove this product?")) {
-    //         fetch(`https://your-server-url.com/my-imports/${id}`, {
-    //             method: "DELETE",
-    //         })
-    //             .then((res) => res.json())
-    //             .then((data) => {
-    //                 if (data.deletedCount > 0) {
-    //                     toast.success("Removed successfully!");
-    //                     setImports(imports.filter((item) => item._id !== id));
-    //                 }
-    //             })
-    //             .catch((err) => {
-    //                 console.error(err);
-    //                 toast.error("Failed to remove item!");
-    //             });
-    //     }
-    // };
+    // Handle Remove
+    const handleRemove = (id) => {
+        if (confirm("Are you sure you want to remove this product?")) {
+            fetch(`https://your-server-url.com/my-imports/${id}`, {
+                method: "DELETE",
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.deletedCount > 0) {
+                        toast.success("Removed successfully!");
+                        setImports(imports.filter((item) => item._id !== id));
+                    }
+                })
+                .catch((err) => {
+                    console.error(err);
+                    toast.error("Failed to remove item!");
+                });
+        }
+    };
 
-    // if (loading || isLoading) {
-    //     return <LoadingPage />;
-    // }
+    if (loading || isLoading) {
+        return <LoadingPage />;
+    }
 
-    // if (imports.length === 0) {
-    //     return (
-    //         <div className="min-h-[70vh] flex flex-col items-center justify-center text-center">
-    //             <h2 className="text-2xl font-semibold text-gray-600 mb-2">
-    //                 No Imported Products Found 😕
-    //             </h2>
-    //             <p className="text-gray-500">
-    //                 Import products from the Product Details page to see them here.
-    //             </p>
-    //         </div>
-    //     );
-    // }
+    if (imports.length === 0) {
+        return (
+            <div className="min-h-[70vh] flex flex-col items-center justify-center text-center">
+                <h2 className="text-2xl font-semibold text-gray-600 mb-2">
+                    No Imported Products Found 😕
+                </h2>
+                <p className="text-gray-500">
+                    Import products from the Product Details page to see them here.
+                </p>
+            </div>
+        );
+    }
 
     return (
         <div className="max-w-6xl mx-auto p-4">
@@ -72,7 +69,7 @@ const MyImports = () => {
             </h1>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {servicesDataSlice.map((item) => (
+                {imports.map((item) => (
                     <div
                         key={item._id}
                         className="border rounded-2xl shadow-md p-4 hover:shadow-lg transition"

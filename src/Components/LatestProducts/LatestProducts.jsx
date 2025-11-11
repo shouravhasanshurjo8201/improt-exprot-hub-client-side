@@ -2,23 +2,23 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Link } from "react-router";
-import useServiceData from "../../Hooks/UseServiceData";
 import LoadingPage from "../../Pages/LoadingPage/LoadingPage";
 import ProductsCard from "../Products/ProductsCard";
+import useLatestProducts from "../../Hooks/useLatestProducts";
 
 const LatestProducts = () => {
-  const { jsonData, Loading } = useServiceData();
-  const servicesDataSlice = jsonData.slice(2,8);
+  const { LatestProducts, Loading } = useLatestProducts();
+  const Products = LatestProducts;
   useEffect(() => {
     AOS.init({ duration: 2000 });
   }, []);
-  
+
   return (
     <div className="mt-6">
       <div data-aos="fade-up">
         <h2 className="text-4xl font-bold text-emerald-500 text-center mb-10">Latest Products</h2>
         {Loading ? <LoadingPage></LoadingPage> :
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-12"> {servicesDataSlice.map((Product) => (<ProductsCard Product={Product} key={Product._id}></ProductsCard>))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-12"> {Products.map((Product) => (<ProductsCard Product={Product} key={Product._id}></ProductsCard>))}
           </div>}
       </div>
       {Loading ? "" :
