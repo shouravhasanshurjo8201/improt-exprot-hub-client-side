@@ -43,15 +43,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "MyImports",
-                element: <MyImports />,
+                element: <ProtectedRoute><MyImports /></ProtectedRoute>,
             },
             {
                 path: "MyExports",
-                element: <MyExports />,
+                element: <ProtectedRoute><MyExports /></ProtectedRoute>,
             },
             {
                 path: "AddExportProduct",
-                element: <AddExportProduct />,
+                element: <ProtectedRoute><AddExportProduct /></ProtectedRoute>,
             },
             {
                 path: "SignUp",
@@ -59,11 +59,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "UpdateProfile",
-                element: <UpdateProfile />,
+                element: <ProtectedRoute><UpdateProfile /></ProtectedRoute>,
             },
             {
                 path: "ForgetPassword",
-                element: <ForgetPassword />,
+                element: <ProtectedRoute><ForgetPassword /></ProtectedRoute>,
             },
             
             {
