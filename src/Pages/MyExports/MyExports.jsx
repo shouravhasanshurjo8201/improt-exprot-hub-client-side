@@ -9,7 +9,6 @@ const MyExports = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // 🔹 Fetch user’s export products
   useEffect(() => {
     if (user?.email) {
       fetch(`http://localhost:3000/Products/ExporterEmail/${user.email}`)
@@ -25,10 +24,9 @@ const MyExports = () => {
     }
   }, [user?.email]);
 
-  // 🔹 Handle Delete Product
   const handleDelete = (id) => {
     if (confirm("Are you sure you want to delete this product?")) {
-      fetch(`http://localhost:3000/Products/${id}`, {
+      fetch(`http://localhost:3000/Products/Delete/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -45,13 +43,11 @@ const MyExports = () => {
     }
   };
 
-  // 🔹 Handle Update Product (open modal)
   const handleUpdate = (product) => {
     setSelectedProduct(product);
     document.getElementById("update_modal").showModal();
   };
 
-  // 🔹 Handle Update Submit
   const handleUpdateSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -62,19 +58,17 @@ const MyExports = () => {
       OriginCountry: form.origin_country.value,
       Rating: parseFloat(form.rating.value),
       AvailableQuantity: parseInt(form.available_quantity.value),
-      Email: user?.email,
     };
 
-    fetch(`http://localhost:3000/Products/${selectedProduct._id}`, {
+    fetch(`http://localhost:3000/Products/Put/${selectedProduct._id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(updatedProduct),
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.modifiedCount > 0) {
+        if (data.modifiedCount) {
           toast.success("Product updated successfully!");
-          // UI update
           const updatedList = exports.map((item) =>
             item._id === selectedProduct._id
               ? { ...item, ...updatedProduct }
@@ -83,12 +77,12 @@ const MyExports = () => {
           setExports(updatedList);
           document.getElementById("update_modal").close();
         } else {
-          toast.error("No changes found!");
+          toast.error("No changes found");
         }
       })
       .catch((err) => {
         console.error(err);
-        toast.error("Update failed!");
+        toast.error("Update failed");
       });
   };
 
@@ -120,7 +114,7 @@ const MyExports = () => {
         {exports.map((item) => (
           <div
             key={item._id}
-            className="border rounded-2xl shadow-md p-4 hover:shadow-lg transition"
+            className="border bg-background4 rounded-2xl shadow-md p-4 hover:shadow-lg transition"
           >
             <img
               src={item.ProductImage}
@@ -157,7 +151,7 @@ const MyExports = () => {
 
       {/*  Update Modal */}
       <dialog id="update_modal" className="modal">
-        <div className="modal-box max-w-lg">
+        <div className="modal-box max-w-lg bg-background4">
           <h3 className="font-bold text-xl mb-4 text-center">
             Update Product Information
           </h3>

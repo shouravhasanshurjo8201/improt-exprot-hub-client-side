@@ -10,7 +10,7 @@ import { Link } from "react-router";
 
 const HeroSlider = () => {
   useEffect(() => {
-    AOS.init({ duration: 2000 });
+    AOS.init({ duration: 1000 });
   }, []);
   const ButtonLink = (<>
     <Link to='/Products' className="btn-primary">Explore More Destinations</Link>
@@ -21,7 +21,7 @@ const HeroSlider = () => {
         {/* --- Slide 1 --- */}
         <SwiperSlide>
           <div className="relative w-full h-[300px] md:h-[400px]">
-            <img src="https://i.postimg.cc/jj7H6vKM/download-15.jpg" alt="Pet Care" className="w-full h-full object-cover" />
+            <img src="https://i.postimg.cc/76q5CNLv/download-14.jpg" alt="Pet Care" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white">
               <h1 className="text-4xl md:text-5xl font-bold mb-3 text-center">
                 Your Gateway to International Trade
@@ -37,7 +37,7 @@ const HeroSlider = () => {
         {/* --- Slide 2 --- */}
         <SwiperSlide>
           <div className="relative w-full h-[300px] md:h-[400px]">
-            <img src="https://i.postimg.cc/76q5CNLv/download-14.jpg" alt="Cozy Cat" className="w-full h-full object-cover" />
+            <img src="https://i.postimg.cc/jj7H6vKM/download-15.jpg" alt="Cozy Cat" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white px-4">
               <h1 className="text-4xl md:text-5xl font-bold mb-3 text-center">
                 Discover Global Opportunities

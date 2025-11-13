@@ -6,9 +6,9 @@ import { Toaster } from 'react-hot-toast';
 const Layout = () => {
  
   return (
-    <div className='flex flex-col min-h-screen bg-background2'>
+    <div className='flex flex-col min-h-screen'>
       <Navbar></Navbar>
-      <div className='flex-1 container mx-auto'>
+      <div className='flex-1 container mx-auto p-2'>
         <Outlet></Outlet>
       </div>
       <Footer></Footer>

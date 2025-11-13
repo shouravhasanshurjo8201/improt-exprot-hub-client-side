@@ -33,8 +33,8 @@ const ProductDetailPage = () => {
         };
 
         try {
-            const res = await fetch(`http://localhost:3000/Products/${Products._id?.toString()}`, {
-                method: "PUT",
+            const res = await fetch(`http://localhost:3000/Products/Patch/${Products._id?.toString()}`, {
+                method: "PATCH",
                 headers: {
                     "content-type": "application/json",
                 },
@@ -60,11 +60,11 @@ const ProductDetailPage = () => {
 
 
     return (
-        <div className="bg-emerald-100 min-h-screen py-10">
+        <div className=" min-h-screen py-10">
             {Loading ? (
                 <LoadingPage />
             ) : (
-                <div className="max-w-5xl mx-auto p-6 bg-white rounded-2xl shadow-lg text-gray-800">
+                <div className="max-w-5xl mx-auto p-6 bg-background1 rounded-2xl shadow-lg text-gray-800">
 
                     <div className="flex flex-col md:flex-row gap-8">
                         <div className="w-full md:w-5/12 flex justify-center items-center">
@@ -76,7 +76,7 @@ const ProductDetailPage = () => {
                         </div>
 
                         <div className="flex-1 space-y-3">
-                            <h1 className="text-3xl font-bold text-emerald-600">{Products.ProductName}</h1>
+                            <h1 className="text-3xl font-bold text-white">{Products.ProductName}</h1>
                             <p className="text-gray-600 text-justify">{Products.Description || "No description available."}</p>
 
                             <div className="grid grid-cols-2 gap-y-2 mt-4">

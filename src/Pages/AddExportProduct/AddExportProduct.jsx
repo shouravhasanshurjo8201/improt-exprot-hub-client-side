@@ -56,7 +56,7 @@ const AddExportProduct = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-2xl mt-10 text-black">
+    <div className="max-w-3xl mx-auto p-6 bg-background1 shadow-md rounded-2xl mt-10 text-white">
       <h1 className="text-3xl font-bold text-center mb-6">
         Add Export Product
       </h1>
@@ -144,11 +144,11 @@ const AddExportProduct = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`px-6 py-2 rounded-lg text-white font-semibold ${
-              loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
+            className={`${
+              loading ? "bg-gray-400 cursor-not-allowed" : "btn-primary"
             }`}
           >
-            {loading ? "Adding..." : "Add Export / Product"}
+            {loading ? "Adding..." : "Add Product Export"}
           </button>
         </div>
       </form>

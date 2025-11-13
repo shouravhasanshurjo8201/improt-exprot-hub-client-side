@@ -9,6 +9,12 @@
   .btn-secondary {
     @apply btn btn-outline text-white font-bold border-none relative mx-4 py-2 px-5 text-base overflow-hidden transition-all duration-400 ease-in-out hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-600 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] rounded-xl hover:before:left-0 cursor-pointer;
   }
+  .gradient1 {
+    @apply bg-gradient-to-l from-emerald-200 via-teal-600 to-emerald-200 bg-clip-text text-transparent;
+  }
+  .gradient2 {
+    @apply  h-1 mx-auto mb-10 mt-2 bg-gradient-to-l from-emerald-700 via-teal-400 to-emerald-700 rounded-full;
+  }
 
   .bg-background1 {
     background-image: url('./assets/background1.png');
@@ -16,12 +22,22 @@
     background-position: center;
   }
   .bg-background2 {
-    background-image: url('./assets/background2.png');
+    background-image: url('./assets/Hexagon.png');
     background-size: cover;
     background-position: center;
   }
   .bg-background3 {
+    background-image: url('./assets/Sprinkle.png');
+    background-size: cover;
+    background-position: center;
+  }
+  .bg-background4 {
     background-image: url('./assets/background1.png');
+    background-size: cover;
+    background-position: center;
+  }
+  .bg-background5 {
+    background-image: url('./assets/background3.png');
     background-size: cover;
     background-position: center;
   }

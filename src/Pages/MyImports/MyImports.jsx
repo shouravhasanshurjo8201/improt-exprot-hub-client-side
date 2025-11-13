@@ -28,20 +28,21 @@ const MyImports = () => {
     // Handle Remove
     const handleRemove = (id) => {
         if (confirm("Are you sure you want to remove this product?")) {
-            fetch(`https://your-server-url.com/my-imports/${id}`, {
+            fetch(`http://localhost:3000/Products/Delete/${id}`, {
                 method: "DELETE",
             })
-                .then((res) => res.json())
-                .then((data) => {
-                    if (data.deletedCount > 0) {
-                        toast.success("Removed successfully!");
-                        setImports(imports.filter((item) => item._id !== id));
-                    }
-                })
-                .catch((err) => {
-                    console.error(err);
-                    toast.error("Failed to remove item!");
-                });
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.deletedCount) {
+                    toast.success("Removed successfully!");
+                    const newData = imports.filter((item) => item._id !== id);
+                    setImports(newData);
+                }
+            })
+            .catch((err) => {
+                console.error(err);
+                toast.error("Failed to remove item!");
+            });
         }
     };
 
@@ -53,7 +54,7 @@ const MyImports = () => {
         return (
             <div className="min-h-[70vh] flex flex-col items-center justify-center text-center">
                 <h2 className="text-2xl font-semibold text-gray-600 mb-2">
-                    No Imported Products Found 😕
+                    No Imported Products Found 
                 </h2>
                 <p className="text-gray-500">
                     Import products from the Product Details page to see them here.
@@ -72,7 +73,7 @@ const MyImports = () => {
                 {imports.map((item) => (
                     <div
                         key={item._id}
-                        className="border rounded-2xl shadow-md p-4 hover:shadow-lg transition"
+                        className="border bg-background4 rounded-2xl shadow-md p-4 hover:shadow-lg transition"
                     >
                         <img
                             src={item.image}

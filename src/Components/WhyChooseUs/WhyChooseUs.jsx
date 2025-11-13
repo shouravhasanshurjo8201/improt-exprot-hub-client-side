@@ -1,25 +1,34 @@
 import { FaShieldAlt, FaShippingFast, FaHandshake, FaGlobe } from "react-icons/fa";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const WhyChooseUs = () => {
-  return (
-    <div className="py-10">
-      <div className="text-center">
-        <h2 className="text-3xl font-bold mb-10 text-emerald-600">
-          Why Choose Import Export Hub?
-        </h2>
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Fast Shipping */}
-          <div className="p-6 rounded-2xl shadow-md hover:shadow-lg transition">
-            <FaShippingFast className="text-4xl text-blue-500 mx-auto mb-4" />
-            <h3 className="text-xl text-emerald-600 font-semibold mb-2">Fast & Secure Delivery</h3>
+  return (
+    <div data-aos="fade-up" className="py-10 text-center">
+      <div data-aos="fade-up">
+        <h2 className="text-4xl font-bold text-center ">   <span className="gradient1"> Why Choose Import Export Hub? </span> </h2>
+        <div className="gradient2 w-full md:w-150"></div>
+      </div>
+
+      <div data-aos="fade-up" className="flex flex-col md:flex-row justify-between items-center gap-10">
+        <div data-aos="fade-right" className="w-full">
+          <img src="https://oneunionsolutions.com/wp-content/uploads/2024/09/Scaling-Your_-898-_Blog-img-2.webp" alt="" className="w-full rounded-2xl" />
+        </div>
+        <div data-aos="fade-up" className="grid md:grid-cols-2 w-full gap-6">
+          <div data-aos="fade-up" className="p-6 bg-yellow-50 rounded-2xl shadow-md hover:shadow-lg transition">
+            <FaShippingFast className="text-4xl text-blue-600 mx-auto mb-4" />
+            <h3 className="text-xl text-emerald-500 font-semibold mb-2">Fast & Secure Delivery</h3>
             <p className="text-gray-800 text-sm">
               Get your products delivered quickly and safely with our trusted global logistics network.
             </p>
           </div>
 
-          {/* Verified Traders */}
-          <div className="p-6 rounded-2xl shadow-md hover:shadow-lg transition">
+          <div data-aos="fade-up" className="p-6 bg-yellow-50 rounded-2xl shadow-md hover:shadow-lg transition">
             <FaShieldAlt className="text-4xl text-green-500 mx-auto mb-4" />
             <h3 className="text-xl text-emerald-600 font-semibold mb-2">Verified Exporters</h3>
             <p className="text-gray-600 text-sm">
@@ -27,8 +36,7 @@ const WhyChooseUs = () => {
             </p>
           </div>
 
-          {/* Global Market */}
-          <div className="p-6 rounded-2xl shadow-md hover:shadow-lg transition">
+          <div data-aos="fade-up" className="p-6 bg-yellow-50 rounded-2xl shadow-md hover:shadow-lg transition">
             <FaGlobe className="text-4xl text-purple-500 mx-auto mb-4" />
             <h3 className="text-xl text-emerald-600 font-semibold mb-2">Global Marketplace</h3>
             <p className="text-gray-600 text-sm">
@@ -36,8 +44,7 @@ const WhyChooseUs = () => {
             </p>
           </div>
 
-          {/* Easy Partnership */}
-          <div className="p-6 rounded-2xl shadow-md hover:shadow-lg transition">
+          <div data-aos="fade-up" className="p-6 bg-yellow-50 rounded-2xl shadow-md hover:shadow-lg transition">
             <FaHandshake className="text-4xl text-orange-500 mx-auto mb-4" />
             <h3 className="text-xl text-emerald-600 font-semibold mb-2">Easy Partnerships</h3>
             <p className="text-gray-600 text-sm">
