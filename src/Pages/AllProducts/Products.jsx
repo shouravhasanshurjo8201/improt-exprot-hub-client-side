@@ -4,12 +4,15 @@ import "aos/dist/aos.css";
 import LoadingPage from "../LoadingPage/LoadingPage";
 import ProductsCard from "../../Components/Products/ProductsCard";
 import useAllProducts from "../../Hooks/useAllProducts";
+import useDynamicTitle from "../../Hooks/useDynamicTitle";
 
 const Products = () => {
   const { allProducts, Loading } = useAllProducts();
   const [Search, setSearch] = useState("")
   const [isSearching, setIsSearching] = useState(false);
   const [SearchData, setSearchData] = useState(allProducts);
+  useDynamicTitle("All Products");
+
 
   useEffect(() => {
     if (!allProducts) return;

@@ -4,10 +4,12 @@ import { useContext } from 'react'
 import { useEffect } from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
+import useDynamicTitle from '../../Hooks/useDynamicTitle';
 
 const Profile = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+  useDynamicTitle("Profile");
   const EditProfile = () => {
     navigate("/updateProfile");
   }

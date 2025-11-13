@@ -3,15 +3,17 @@ import toast from "react-hot-toast";
 import LoadingPage from "../LoadingPage/LoadingPage";
 import { Link } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
+import useDynamicTitle from "../../Hooks/useDynamicTitle";
 
 const MyImports = () => {
     const { user, loading } = useContext(AuthContext);
     const [imports, setImports] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    useDynamicTitle("My Imports Products");
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:3000/Products/ImporterEmail/${user.email}`)
+            fetch(`https://improt-exprot-hub-server-side.vercel.app/Products/ImporterEmail/${user.email}`)
             .then((res) => res.json())
             .then((data) => {
                 setImports(data);
@@ -26,7 +28,7 @@ const MyImports = () => {
 
     const handleRemove = (id) => {
         if (confirm("Are you sure you want to remove this product?")) {
-            fetch(`http://localhost:3000/Products/Delete/${id}`, {
+            fetch(`https://improt-exprot-hub-server-side.vercel.app/Products/Delete/${id}`, {
                 method: "DELETE",
             })
             .then((res) => res.json())

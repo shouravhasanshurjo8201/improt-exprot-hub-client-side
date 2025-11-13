@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/a
 import { toast } from 'react-hot-toast';
 import { GoogleAuthProvider } from "firebase/auth";
 import { AuthContext } from '../../Context/AuthContext';
+import useDynamicTitle from '../../Hooks/useDynamicTitle';
 
 
 const Login = () => {
@@ -14,6 +15,8 @@ const Login = () => {
   const navigate = useNavigate();
   const userLocation = useLocation();
   const from = userLocation.state?.from?.pathname || "/";
+  useDynamicTitle("Login");
+
   if (user) {
     return <Navigate to="/" />
   }

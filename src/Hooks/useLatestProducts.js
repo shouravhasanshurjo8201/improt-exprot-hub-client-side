@@ -8,7 +8,7 @@ const useLatestProducts = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:3000/Products/latest');
+                const response = await fetch('https://improt-exprot-hub-server-side.vercel.app/Products/latest');
                 const data = await response.json();
                 setLatestProducts(data);
             } catch (err) {

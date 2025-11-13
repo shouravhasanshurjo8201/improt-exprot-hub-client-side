@@ -8,7 +8,7 @@ const useAllProducts = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:3000/Products');
+                const response = await fetch('https://improt-exprot-hub-server-side.vercel.app/Products');
                 const data = await response.json();
                 setAllProducts(data);
             } catch (err) {

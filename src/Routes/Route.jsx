@@ -14,16 +14,18 @@ import ProductDetailPage from "../Pages/ProductDetailPage/ProductDetailPage";
 import MyImports from "../Pages/MyImports/MyImports";
 import AddExportProduct from "../Pages/AddExportProduct/AddExportProduct";
 import MyExports from "../Pages/MyExports/MyExports";
+import LoadingPage from "../Pages/LoadingPage/LoadingPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Layout />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 index: true,
-                errorElement: <ErrorPage />,
                 element: <Home />,
+                hydrateFallbackElement: <LoadingPage></LoadingPage>
             },
             {
                 path: "Products",
@@ -63,9 +65,8 @@ const router = createBrowserRouter([
             },
             {
                 path: "ForgetPassword",
-                element: <ProtectedRoute><ForgetPassword /></ProtectedRoute>,
+                element: <ForgetPassword />
             },
-            
             {
                 path: "*",
                 element: <PageNotFound />

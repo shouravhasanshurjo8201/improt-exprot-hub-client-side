@@ -1,8 +1,9 @@
 import { Link, useRouteError } from "react-router";
+import useDynamicTitle from "../../Hooks/useDynamicTitle";
 
 const ErrorPage = () => {
     const error = useRouteError();
-
+    useDynamicTitle("Error Page");
     return (
         <div className="min-h-screen flex flex-col justify-center items-center text-center p-6">
             <div className="text-8xl mb-6 text-rose-500">⚠️</div>

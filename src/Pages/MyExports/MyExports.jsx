@@ -2,16 +2,18 @@ import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../Context/AuthContext";
 import LoadingPage from "../LoadingPage/LoadingPage";
+import useDynamicTitle from "../../Hooks/useDynamicTitle";
 
 const MyExports = () => {
   const { user, loading } = useContext(AuthContext);
   const [exports, setExports] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  useDynamicTitle("My Exports Products");
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/Products/ExporterEmail/${user.email}`)
+      fetch(`https://improt-exprot-hub-server-side.vercel.app/Products/ExporterEmail/${user.email}`)
         .then((res) => res.json())
         .then((data) => {
           setExports(data);
@@ -26,7 +28,7 @@ const MyExports = () => {
 
   const handleDelete = (id) => {
     if (confirm("Are you sure you want to delete this product?")) {
-      fetch(`http://localhost:3000/Products/Delete/${id}`, {
+      fetch(`https://improt-exprot-hub-server-side.vercel.app/Products/Delete/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -60,7 +62,7 @@ const MyExports = () => {
       AvailableQuantity: parseInt(form.available_quantity.value),
     };
 
-    fetch(`http://localhost:3000/Products/Put/${selectedProduct._id}`, {
+    fetch(`https://improt-exprot-hub-server-side.vercel.app/Products/Put/${selectedProduct._id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(updatedProduct),

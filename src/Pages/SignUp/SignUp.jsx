@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { AuthContext } from '../../Context/AuthContext';
+import useDynamicTitle from '../../Hooks/useDynamicTitle';
 
 const SignUp = () => {
     const { user, setUser } = useContext(AuthContext);
@@ -16,6 +17,7 @@ const SignUp = () => {
     const [show, setShow] = useState(false)
     const location = userLocation.state || "/";
     const navigate = useNavigate();
+    useDynamicTitle("SignUp");
     const handleSignup = (e) => {
         e.preventDefault();
         const displayName = e.target.Name?.value;

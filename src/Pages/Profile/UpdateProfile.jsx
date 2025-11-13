@@ -7,11 +7,13 @@ import toast from "react-hot-toast";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import useDynamicTitle from "../../Hooks/useDynamicTitle";
 const UpdateProfile = () => {
     const navigate = useNavigate();
     const { user, setUser } = useContext(AuthContext);
     const [displayName, setDisplayName] = useState(user?.displayName || "");
     const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
+    useDynamicTitle("Update Profile");
     const handleUpdateProfile = (e) => {
         e.preventDefault();
         updateProfile(auth.currentUser, { displayName, photoURL })

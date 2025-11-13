@@ -6,6 +6,7 @@ import PageNotFound from "../PageNotFound/PageNotFound";
 import { AuthContext } from "../../Context/AuthContext";
 import useAllProducts from "../../Hooks/useAllProducts";
 import AboutUs from "../AboutUs/AboutUs";
+import useDynamicTitle from "../../Hooks/useDynamicTitle";
 
 const ProductDetailPage = () => {
     const [importQuantity, setImportQuantity] = useState(null);
@@ -16,6 +17,7 @@ const ProductDetailPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const Products = allProducts.find((item) => item._id === id);
+    useDynamicTitle("Product Detail Page");
 
     if (!user) {
         return <Navigate to="/login" state={{ from: location }} replace />;
@@ -30,7 +32,7 @@ const ProductDetailPage = () => {
             importerEmail: user?.email
         };
         try {
-            const res = await fetch(`http://localhost:3000/Products/Patch/${Products._id?.toString()}`, {
+            const res = await fetch(`https://improt-exprot-hub-server-side.vercel.app/Products/Patch/${Products._id?.toString()}`, {
                 method: "PATCH",
                 headers: {
                     "content-type": "application/json",

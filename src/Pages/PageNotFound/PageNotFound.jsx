@@ -1,6 +1,8 @@
 import { Link } from "react-router";
+import useDynamicTitle from "../../Hooks/useDynamicTitle";
 
 const PageNotFound = () => {
+  useDynamicTitle("Not Found Page");
   return (
     <div className="h-screen flex flex-col justify-center items-center bg-emerald-100">
       <h1 className="text-8xl font-bold text-emerald-600">4 0 4</h1>

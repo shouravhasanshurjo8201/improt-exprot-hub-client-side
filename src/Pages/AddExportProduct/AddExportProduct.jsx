@@ -2,11 +2,13 @@ import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
+import useDynamicTitle from "../../Hooks/useDynamicTitle";
 
 const AddExportProduct = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  useDynamicTitle("Add Export Product");
 
   const handleAddProduct = (e) => {
     e.preventDefault();
@@ -28,38 +30,38 @@ const AddExportProduct = () => {
       Exporter_Email: user?.email,
     };
 
-    fetch("http://localhost:3000/Products", {
+    fetch("https://improt-exprot-hub-server-side.vercel.app/Products", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(newProduct),
     })
-    .then((res) => res.json())
-    .then((data) => {
-      setLoading(false);
-      if (data.insertedId) {
-        toast.success("Product added successfully!");
-        form.reset();
-        navigate("/Products"); // redirect to All Products page
-      } else {
-        toast.error("Failed to add product!");
-      }
-    })
-    .catch((err) => {
-      setLoading(false);
-      console.error(err);
-      toast.error("Something went wrong!");
-    });
+      .then((res) => res.json())
+      .then((data) => {
+        setLoading(false);
+        if (data.insertedId) {
+          toast.success("Product added successfully!");
+          form.reset();
+          navigate("/Products"); // redirect to All Products page
+        } else {
+          toast.error("Failed to add product!");
+        }
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.error(err);
+        toast.error("Something went wrong!");
+      });
   };
 
   return (
-    <div  data-aos="fade-up" className="max-w-3xl mx-auto p-6 bg-background1 shadow-md rounded-2xl my-10 text-white">
-      <h1  data-aos="fade-up" className="text-3xl text-emerald-700 font-bold text-center mb-6">
+    <div data-aos="fade-up" className="max-w-3xl mx-auto p-6 bg-background1 shadow-md rounded-2xl my-10 text-white">
+      <h1 data-aos="fade-up" className="text-3xl text-emerald-700 font-bold text-center mb-6">
         Add Export Product
       </h1>
 
-      <form  data-aos="fade-up" onSubmit={handleAddProduct} className="space-y-4">
+      <form data-aos="fade-up" onSubmit={handleAddProduct} className="space-y-4">
         <div>
           <label className="block mb-1 font-medium">Product Name</label>
           <input
@@ -132,8 +134,7 @@ const AddExportProduct = () => {
         </div>
 
         <div className="text-center pt-2">
-          <button  type="submit" disabled={loading}  className={`${
-              loading ? "bg-gray-400 cursor-not-allowed" : "btn-primary"
+          <button type="submit" disabled={loading} className={`${loading ? "bg-gray-400 cursor-not-allowed" : "btn-primary"
             }`} >
             {loading ? "Adding..." : "Add Product Export"}
           </button>
