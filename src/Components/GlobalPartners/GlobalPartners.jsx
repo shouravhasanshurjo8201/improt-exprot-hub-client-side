@@ -7,31 +7,31 @@ const GlobalPartners = () => {
     {
       id: 1,
       name: "Alibaba",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/4/41/Alibaba_en_logo.svg",
     },
     {
       id: 2,
-      name: "Amazon",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
-    },
-    {
-      id: 3,
       name: "eBay",
       logo: "https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg",
     },
     {
+      id: 3,
+      name: "Maersk",
+      logo: "https://assets.maerskline.com/integrated-global-nav/2/2.2.14//assets/img/logos/maeu.svg",
+    },
+    {
       id: 4,
       name: "DHL",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/a/ac/DHL_Logo.svg",
     },
     {
       id: 5,
       name: "FedEx",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/FedEx_Express.svg",
     },
     {
       id: 6,
-      name: "Maersk",
+      name: "Amazon",
       logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
     },
   ];
@@ -56,7 +56,7 @@ const GlobalPartners = () => {
             <div data-aos="fade-up" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 gap-6 items-center justify-center ">
               {partners.map((partner) => (
                 <div key={partner.id} data-aos="fade-up" className="flex items-center justify-center p-4 rounded-xl hover:shadow-md transition" >
-                  <img src={partner.logo} alt={partner.name} className="h-15 object-contain grayscale hover:grayscale-0 transition" />
+                  <img src={partner.logo} alt={partner.name} className="h-15 object-contain grayscale hover:grayscale-0 transition rounded-md" />
                 </div>
               ))}
             </div>
