@@ -104,6 +104,25 @@ const MyExports = () => {
       </div>
     );
   }
+  const downloadCSV = (data) => {
+    const csvRows = [];
+    const headers = Object.keys(data[0]);
+    csvRows.push(headers.join(","));
+    data.forEach(row => {
+      const values = headers.map(header => `"${row[header]}"`);
+      csvRows.push(values.join(","));
+    });
+    const csvContent = csvRows.join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.setAttribute("hidden", "");
+    a.setAttribute("href", url);
+    a.setAttribute("download", "my_exports.csv");
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
 
   return (
     <div className="max-w-6xl mx-auto p-4">
@@ -131,6 +150,12 @@ const MyExports = () => {
             <div className="flex justify-between mt-4">
               <button onClick={() => handleDelete(item._id)} className="bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600" >
                 Delete
+              </button>
+              <button
+                onClick={() => downloadCSV(exports)}
+                className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded"
+              >
+                Download CSV
               </button>
 
               <button onClick={() => handleUpdate(item)} className="bg-yellow-500 text-white px-3 py-2 rounded-lg hover:bg-yellow-600" >
