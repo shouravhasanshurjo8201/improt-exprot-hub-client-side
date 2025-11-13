@@ -15,9 +15,9 @@ const Profile = () => {
     AOS.init({ duration: 2000 });
   }, []);
   return (
-    <div className='bg-emerald-100  flex-1 flex flex-col items-center justify-center'>
+    <div className='flex-1 flex flex-col items-center justify-center'>
       <div data-aos="fade-up" className='container mx-auto '>
-        <div className="flex flex-col items-center justify-center bg-blue-300 m-10 p-5 rounded-xl w-8/12 lg:w-4/12 mx-auto">
+        <div className="flex flex-col items-center justify-center bg-background1 m-10 p-5 rounded-xl w-8/12 lg:w-4/12 mx-auto">
           <img
             src={user?.photoURL || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr9CKuBjYUddQREnoIMeN90lel-2hbn6OsnXS86_EQpiH6_MuVM9tV0i7UBVUpsiry_xw&usqp=CAU'}
             onError={(e) => {
@@ -30,7 +30,7 @@ const Profile = () => {
           <h2 className="text-2xl font-bold text-gray-800">
             {user?.displayName || "Anonymous User"}
           </h2>
-          <p className="text-gray-600 mb-6">
+          <p className="text-blue-300 my-4">
             {user?.email || "No email available"}
           </p>
           <button onClick={EditProfile} className="px-4 py-2 bg-emerald-600 font-bold text-white rounded-lg hover:bg-emerald-500 transition">

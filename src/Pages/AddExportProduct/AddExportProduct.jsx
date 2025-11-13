@@ -60,7 +60,6 @@ const AddExportProduct = () => {
       </h1>
 
       <form  data-aos="fade-up" onSubmit={handleAddProduct} className="space-y-4">
-        {/* Product Name */}
         <div>
           <label className="block mb-1 font-medium">Product Name</label>
           <input
@@ -72,7 +71,6 @@ const AddExportProduct = () => {
           />
         </div>
 
-        {/* Product Image */}
         <div>
           <label className="block mb-1 font-medium">Product Image (URL)</label>
           <input
@@ -84,7 +82,6 @@ const AddExportProduct = () => {
           />
         </div>
 
-        {/* Price */}
         <div>
           <label className="block mb-1 font-medium">Price ($)</label>
           <input
@@ -97,7 +94,6 @@ const AddExportProduct = () => {
           />
         </div>
 
-        {/* Origin Country */}
         <div>
           <label className="block mb-1 font-medium">Origin Country</label>
           <input
@@ -109,7 +105,6 @@ const AddExportProduct = () => {
           />
         </div>
 
-        {/* Rating */}
         <div>
           <label className="block mb-1 font-medium">Rating (1-5)</label>
           <input
@@ -124,7 +119,6 @@ const AddExportProduct = () => {
           />
         </div>
 
-        {/* Available Quantity */}
         <div>
           <label className="block mb-1 font-medium">Available Quantity</label>
           <input
@@ -137,15 +131,10 @@ const AddExportProduct = () => {
           />
         </div>
 
-        {/* Submit Button */}
         <div className="text-center pt-2">
-          <button
-            type="submit"
-            disabled={loading}
-            className={`${
+          <button  type="submit" disabled={loading}  className={`${
               loading ? "bg-gray-400 cursor-not-allowed" : "btn-primary"
-            }`}
-          >
+            }`} >
             {loading ? "Adding..." : "Add Product Export"}
           </button>
         </div>
