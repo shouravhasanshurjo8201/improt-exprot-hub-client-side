@@ -92,11 +92,11 @@ const MyExports = () => {
 
   if (exports.length === 0) {
     return (
-      <div className="min-h-[70vh] flex flex-col items-center justify-center text-center">
-        <h2 className="text-2xl font-semibold text-gray-600 mb-2">
-          No Exported Products Found 😕
+      <div data-aos="fade-up" className="min-h-[50vh] flex flex-col items-center justify-center text-center">
+        <h2 className="text-2xl font-semibold gradient1 mb-2">
+          No Exported Products Found.
         </h2>
-        <p className="text-gray-500">
+        <p className="text-blue-400">
           Add some export products to see them here.
         </p>
       </div>
@@ -104,44 +104,34 @@ const MyExports = () => {
   }
 
   return (
-    <div className="my-8 ">
-      <h1 className="text-3xl font-bold text-center mb-8 text-black">
-        My Exported Products
-      </h1>
+    <div className="max-w-6xl mx-auto p-4">
+      <div data-aos="fade-up">
+        <h2 className="text-4xl font-bold text-center "> <span className="gradient1"> My Exported Products </span> </h2>
+        <div className="gradient2 w-full md:w-110"></div>
+      </div>
 
-      {/* Product Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12  ">
+      <div data-aos="fade-up" className="grid md:grid-cols-2 lg:grid-cols-3 gap-12  ">
         {exports.map((item) => (
-          <div
-            key={item._id}
-            className="border bg-background4 rounded-2xl shadow-md p-4 hover:shadow-lg transition"
-          >
-            <img
-              src={item.ProductImage}
-              alt={item.ProductName}
-              className="w-full h-48 object-cover rounded-xl mb-3"
-            />
-            <h2 className="text-xl text-black font-semibold mb-1">{item.ProductName}</h2>
-            <p className="text-gray-600">💲 Price: ${item.Price}</p>
-            <p className="text-gray-600">⭐ Rating: {item.Rating}</p>
-            <p className="text-gray-600">🌍 Origin: {item.OriginCountry}</p>
-            <p className="text-gray-700 font-medium mt-2">
-              Available Quantity:{" "}
-              <span className="text-blue-600">{item.AvailableQuantity}</span>
-            </p>
+          <div data-aos="fade-up" key={item._id} className="bg-background4 rounded-2xl shadow-md p-4 hover:shadow-lg transition hover:scale-105 duration-300 ease-in-out"   >
+            <img src={item.ProductImage} alt={item.ProductName} className="w-full h-48 object-cover rounded-xl mb-3" />
+            <div>
+              <h3 className="text-xl text-black font-bold mb-2">{item.ProductName}</h3>
+              <div className="flex justify-between items-center px-2">
+                <p className="text-blue-200 mb-1">Quantity: {item.AvailableQuantity}</p>
+                <p className="text-blue-300 font-medium mb-3">$ {item.Price}</p>
+              </div>
+              <div className="flex justify-between items-center px-2">
+                <p className="text-blue-200 font-medium mb-3">{item.OriginCountry}</p>
+                <p className="text-yellow-500 mb-1">⭐ {item.Rating}</p>
+              </div>
+            </div>
 
             <div className="flex justify-between mt-4">
-              <button
-                onClick={() => handleDelete(item._id)}
-                className="bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600"
-              >
+              <button onClick={() => handleDelete(item._id)} className="bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600" >
                 Delete
               </button>
 
-              <button
-                onClick={() => handleUpdate(item)}
-                className="bg-yellow-500 text-white px-3 py-2 rounded-lg hover:bg-yellow-600"
-              >
+              <button onClick={() => handleUpdate(item)} className="bg-yellow-500 text-white px-3 py-2 rounded-lg hover:bg-yellow-600" >
                 Update
               </button>
             </div>
@@ -149,76 +139,27 @@ const MyExports = () => {
         ))}
       </div>
 
-      {/*  Update Modal */}
       <dialog id="update_modal" className="modal">
         <div className="modal-box max-w-lg bg-background4">
-          <h3 className="font-bold text-xl mb-4 text-center">
+          <h3 className="text-emerald-800 font-bold text-xl mb-4 text-center">
             Update Product Information
           </h3>
 
           {selectedProduct && (
             <form onSubmit={handleUpdateSubmit} className="space-y-3 text-white">
-              <input
-                type="text"
-                name="name"
-                defaultValue={selectedProduct.ProductName}
-                required
-                className="w-full border px-3 py-2 rounded-lg"
-              />
-              <input
-                type="url"
-                name="image"
-                defaultValue={selectedProduct.ProductImage}
-                required
-                className="w-full border px-3 py-2 rounded-lg"
-              />
-              <input
-                type="number"
-                name="price"
-                defaultValue={selectedProduct.Price}
-                required
-                className="w-full border px-3 py-2 rounded-lg"
-              />
-              <input
-                type="text"
-                name="origin_country"
-                defaultValue={selectedProduct.OriginCountry}
-                required
-                className="w-full border px-3 py-2 rounded-lg"
-              />
-              <input
-                type="number"
-                name="rating"
-                min="1"
-                max="5"
-                step="0.1"
-                defaultValue={selectedProduct.Rating}
-                required
-                className="w-full border px-3 py-2 rounded-lg"
-              />
-              <input
-                type="number"
-                name="available_quantity"
-                min="1"
-                defaultValue={selectedProduct.AvailableQuantity}
-                required
-                className="w-full border px-3 py-2 rounded-lg"
-              />
+              <input type="text" name="name" defaultValue={selectedProduct.ProductName} required className="w-full border px-3 py-2 rounded-lg" />
+              <input type="url" name="image" defaultValue={selectedProduct.ProductImage} required className="w-full border px-3 py-2 rounded-lg" />
+              <input type="number" name="price" defaultValue={selectedProduct.Price} required className="w-full border px-3 py-2 rounded-lg" />
+              <input type="text" name="origin_country" defaultValue={selectedProduct.OriginCountry} required className="w-full border px-3 py-2 rounded-lg" />
+              <input type="number" name="rating" min="1" max="5" step="0.1" defaultValue={selectedProduct.Rating} required className="w-full border px-3 py-2 rounded-lg" />
+              <input type="number" name="available_quantity" min="1" defaultValue={selectedProduct.AvailableQuantity} required className="w-full border px-3 py-2 rounded-lg" />
 
               <div className="flex justify-between mt-4">
-                <button
-                  type="button"
-                  onClick={() =>
-                    document.getElementById("update_modal").close()
-                  }
-                  className="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500"
-                >
+                <button type="button" onClick={() => document.getElementById("update_modal").close()
+                } className="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500" >
                   Cancel
                 </button>
-                <button
-                  type="submit"
-                  className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-                >
+                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"  >
                   Submit
                 </button>
               </div>

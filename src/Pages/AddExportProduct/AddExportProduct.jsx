@@ -11,7 +11,6 @@ const AddExportProduct = () => {
   const handleAddProduct = (e) => {
     e.preventDefault();
     setLoading(true);
-
     const form = e.target;
     const ProductName = form.name.value;
     const ProductImage = form.image.value;
@@ -19,7 +18,6 @@ const AddExportProduct = () => {
     const OriginCountry = form.origin_country.value;
     const Rating = parseFloat(form.rating.value);
     const AvailableQuantity = parseInt(form.available_quantity.value);
-
     const newProduct = {
       ProductName,
       ProductImage,
@@ -37,31 +35,31 @@ const AddExportProduct = () => {
       },
       body: JSON.stringify(newProduct),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        setLoading(false);
-        if (data.insertedId) {
-          toast.success("Product added successfully!");
-          form.reset();
-          navigate("/Products"); // redirect to All Products page
-        } else {
-          toast.error("Failed to add product!");
-        }
-      })
-      .catch((err) => {
-        setLoading(false);
-        console.error(err);
-        toast.error("Something went wrong!");
-      });
+    .then((res) => res.json())
+    .then((data) => {
+      setLoading(false);
+      if (data.insertedId) {
+        toast.success("Product added successfully!");
+        form.reset();
+        navigate("/Products"); // redirect to All Products page
+      } else {
+        toast.error("Failed to add product!");
+      }
+    })
+    .catch((err) => {
+      setLoading(false);
+      console.error(err);
+      toast.error("Something went wrong!");
+    });
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-background1 shadow-md rounded-2xl mt-10 text-white">
-      <h1 className="text-3xl font-bold text-center mb-6">
+    <div  data-aos="fade-up" className="max-w-3xl mx-auto p-6 bg-background1 shadow-md rounded-2xl my-10 text-white">
+      <h1  data-aos="fade-up" className="text-3xl text-emerald-700 font-bold text-center mb-6">
         Add Export Product
       </h1>
 
-      <form onSubmit={handleAddProduct} className="space-y-4">
+      <form  data-aos="fade-up" onSubmit={handleAddProduct} className="space-y-4">
         {/* Product Name */}
         <div>
           <label className="block mb-1 font-medium">Product Name</label>
