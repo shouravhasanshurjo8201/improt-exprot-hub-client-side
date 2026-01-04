@@ -45,30 +45,49 @@ const Login = () => {
 
         try {
             const res = await signInWithEmailAndPassword(auth, Email, Password);
+            const userEmail = res.user?.email;
 
-            // const dbRes = await fetch(
-            //     `https://improt-exprot-hub-server-side.vercel.app/users/${res.user.email}`
-            // );
-            // const dbUser = await dbRes.json();
+            const dbRes = await fetch(
+                `https://improt-exprot-hub-server-side.vercel.app/users/${userEmail}`
+            );
+            let dbUser = {};
+
+            if (dbRes.ok) {
+                const text = await dbRes.text(); 
+                dbUser = text ? JSON.parse(text) : {}; 
+            }
+
+
+            console.log(dbUser);
+
+            console.log("Database User Info:", dbUser);
 
             const loggedUser = {
                 ...res.user,
-                // role: dbUser?.role || "user",
-                role:  "user",
+                role: dbUser?.role || "user",
+                jobTitle: dbUser?.jobTitle || "",
+                bio: dbUser?.bio || "",
+                phoneNumber: dbUser?.phoneNumber || ""
             };
 
             setUser(loggedUser);
-            toast.success("Welcome Back!");
+            toast.success(`Welcome Back, ${dbUser?.name || "User"}!`);
 
             if (loggedUser.role === "admin") {
                 navigate("/admin/dashboard", { replace: true });
             } else {
                 navigate(from, { replace: true });
             }
+
         } catch (e) {
-            if (e.code === "auth/user-not-found") toast.error("User not found!");
-            else if (e.code === "auth/wrong-password") toast.error("Wrong password!");
-            else toast.error(e.message);
+            console.error("Login Error:", e);
+            if (e.code === "auth/user-not-found" || e.code === "auth/invalid-credential") {
+                toast.error("Invalid email or password!");
+            } else if (e.code === "auth/wrong-password") {
+                toast.error("Wrong password!");
+            } else {
+                toast.error(e.message || "Something went wrong!");
+            }
         }
     };
 
@@ -76,31 +95,36 @@ const Login = () => {
         try {
             const res = await signInWithPopup(auth, provider);
 
-            // await fetch("https://improt-exprot-hub-server-side.vercel.app/users", {
-            //     method: "POST",
-            //     headers: { "Content-Type": "application/json" },
-            //     body: JSON.stringify({
-            //         name: res.user.displayName,
-            //         email: res.user.email,
-            //         photoURL: res.user.photoURL,
-            //         role: "user",
-            //     }),
-            // });
+            const response = await fetch("https://improt-exprot-hub-server-side.vercel.app/login-user", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: res.user.displayName,
+                    email: res.user.email,
+                    photoURL: res.user.photoURL,
+                    role: "user",
+                }),
+            });
 
-            // const dbRes = await fetch(
-            //     `https://improt-exprot-hub-server-side.vercel.app/users/${res.user.email}`
-            // );
-            // const dbUser = await dbRes.json();
+            const loginResult = await response.json();
+
+            const dbRes = await fetch(
+                `https://improt-exprot-hub-server-side.vercel.app/users/${res.user.email}`
+            );
+            const dbUser = await dbRes.json();
 
             setUser({
                 ...res.user,
-                // role: dbUser?.role || "user",
-                 role:  "user",
+                role: dbUser?.role || "user",
+                jobTitle: dbUser?.jobTitle || "",
+                bio: dbUser?.bio || "",
+                phoneNumber: dbUser?.phoneNumber || "",
             });
 
             toast.success("Login successful with Google!");
             navigate(from, { replace: true });
         } catch (e) {
+            console.error(e);
             toast.error(e.message);
         }
     };

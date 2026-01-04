@@ -55,43 +55,49 @@ const SignUp = () => {
         const { Name, Email, Photo, Password } = data;
 
         try {
-            const res = await createUserWithEmailAndPassword(
-                auth,
-                Email,
-                Password
-            );
-
+            const res = await createUserWithEmailAndPassword(auth, Email, Password);
             await updateProfile(res.user, {
                 displayName: Name,
                 photoURL: Photo,
             });
 
-            //   const dbRes = await fetch("http://localhost:3000/users", {
-            //     method: "POST",
-            //     headers: { "Content-Type": "application/json" },
-            //     body: JSON.stringify({
-            //       name: Name,
-            //       email: Email,
-            //       photoURL: Photo,
-            //       role: "user",
-            //     }),
-            //   });
-
-            //   const savedUser = await dbRes.json();
-
-            setUser({
-                ...res.user,
-                // role: savedUser.role || "user",
-                 role:  "user",
+            const dbRes = await fetch("https://improt-exprot-hub-server-side.vercel.app/login-user", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: Name,
+                    email: Email,
+                    photoURL: Photo,
+                    role: "user",
+                    createdAt: new Date().toISOString(),
+                    last_loggedIn: new Date().toISOString(),
+                }),
             });
 
-            toast.success("Account created successfully!");
-            navigate(from, { replace: true });
+            if (dbRes.ok) {
+                const savedUser = await dbRes.json();
+
+                setUser({
+                    ...res.user,
+                    displayName: Name,
+                    photoURL: Photo,
+                    role: savedUser?.role || "user",
+                });
+
+                toast.success("Account created successfully!");
+                navigate(from || "/", { replace: true });
+            } else {
+                throw new Error("Failed to save user in database");
+            }
+
         } catch (error) {
+            console.error("SignUp Error:", error);
             if (error.code === "auth/email-already-in-use") {
                 toast.error("Email already in use!");
+            } else if (error.code === "auth/weak-password") {
+                toast.error("Password should be at least 6 characters.");
             } else {
-                toast.error(error.message);
+                toast.error(error.message || "Registration failed!");
             }
         }
     };
@@ -100,29 +106,37 @@ const SignUp = () => {
         try {
             const res = await signInWithPopup(auth, provider);
 
-              const dbRes = await fetch("https://improt-exprot-hub-server-side.vercel.app/users", {
+            const response = await fetch("https://improt-exprot-hub-server-side.vercel.app/login-user", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                  name: res.user.displayName,
-                  email: res.user.email,
-                  photoURL: res.user.photoURL,
-                  role: "user",
+                    name: res.user.displayName,
+                    email: res.user.email,
+                    photoURL: res.user.photoURL,
+                    role: "user",
                 }),
-              });
+            });
 
-              const savedUser = await dbRes.json();
+            const loginResult = await response.json();
+
+            const dbRes = await fetch(
+                `https://improt-exprot-hub-server-side.vercel.app/users/${res.user.email}`
+            );
+            const dbUser = await dbRes.json();
 
             setUser({
                 ...res.user,
-                role: savedUser.role || "user",
-                 role:  "user",
+                role: dbUser?.role || "user",
+                jobTitle: dbUser?.jobTitle || "",
+                bio: dbUser?.bio || "",
+                phoneNumber: dbUser?.phoneNumber || "",
             });
 
-            toast.success("Signed up with Google!");
+            toast.success("Login successful with Google!");
             navigate(from, { replace: true });
-        } catch (error) {
-            toast.error(error.message);
+        } catch (e) {
+            console.error(e);
+            toast.error(e.message);
         }
     };
 

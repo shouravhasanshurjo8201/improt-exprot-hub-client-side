@@ -7,9 +7,6 @@ const ErrorPage = () => {
     useDynamicTitle("System Error");
     console.error(error);
 
-
-
-    
     return (
         <div className="flex flex-col justify-center items-center p-6 transition-colors">
             <div className="max-w-xl w-full shadow rounded-xl overflow-hidden border border-rose-100 dark:border-rose-900/20">
