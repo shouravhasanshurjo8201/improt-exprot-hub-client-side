@@ -34,29 +34,27 @@ const Login = () => {
 
     const currentEmail = watch("Email");
 
-    // ✅ Already logged-in redirect
     useEffect(() => {
         if (user) {
             navigate("/", { replace: true });
         }
     }, [user, navigate]);
 
-    // ================= EMAIL LOGIN =================
     const onSubmit = async (data) => {
         const { Email, Password } = data;
 
         try {
             const res = await signInWithEmailAndPassword(auth, Email, Password);
 
-            // ✅ Fetch role from server
-            const dbRes = await fetch(
-                `https://improt-exprot-hub-server-side.vercel.app/users/${res.user.email}`
-            );
-            const dbUser = await dbRes.json();
+            // const dbRes = await fetch(
+            //     `https://improt-exprot-hub-server-side.vercel.app/users/${res.user.email}`
+            // );
+            // const dbUser = await dbRes.json();
 
             const loggedUser = {
                 ...res.user,
-                role: dbUser?.role || "user",
+                // role: dbUser?.role || "user",
+                role:  "user",
             };
 
             setUser(loggedUser);
@@ -74,32 +72,30 @@ const Login = () => {
         }
     };
 
-    // ================= GOOGLE LOGIN =================
     const handleGoogleLogin = async () => {
         try {
             const res = await signInWithPopup(auth, provider);
 
-            // ✅ Upsert user
-            await fetch("https://improt-exprot-hub-server-side.vercel.app/users", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    name: res.user.displayName,
-                    email: res.user.email,
-                    photoURL: res.user.photoURL,
-                    role: "user",
-                }),
-            });
+            // await fetch("https://improt-exprot-hub-server-side.vercel.app/users", {
+            //     method: "POST",
+            //     headers: { "Content-Type": "application/json" },
+            //     body: JSON.stringify({
+            //         name: res.user.displayName,
+            //         email: res.user.email,
+            //         photoURL: res.user.photoURL,
+            //         role: "user",
+            //     }),
+            // });
 
-            // ✅ Fetch role
-            const dbRes = await fetch(
-                `https://improt-exprot-hub-server-side.vercel.app/users/${res.user.email}`
-            );
-            const dbUser = await dbRes.json();
+            // const dbRes = await fetch(
+            //     `https://improt-exprot-hub-server-side.vercel.app/users/${res.user.email}`
+            // );
+            // const dbUser = await dbRes.json();
 
             setUser({
                 ...res.user,
-                role: dbUser?.role || "user",
+                // role: dbUser?.role || "user",
+                 role:  "user",
             });
 
             toast.success("Login successful with Google!");
@@ -109,7 +105,6 @@ const Login = () => {
         }
     };
 
-    // ================= EXTRA =================
     const handleForgetPassword = () => {
         navigate("/forgetPassword", {
             state: { email: currentEmail },
