@@ -1,4 +1,6 @@
-import { createBrowserRouter } from "react-router";
+
+
+import { createBrowserRouter } from "react-router-dom";
 import Layout from "../Layouts/Layout";
 import Home from "../Pages/Home/Home";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
@@ -15,6 +17,8 @@ import MyImports from "../Pages/MyImports/MyImports";
 import AddExportProduct from "../Pages/AddExportProduct/AddExportProduct";
 import MyExports from "../Pages/MyExports/MyExports";
 import LoadingPage from "../Pages/LoadingPage/LoadingPage";
+import CookiesPolicy from "../Components/CookiesConsent/CookiesConsent";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
     {
@@ -25,23 +29,36 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home />,
-                hydrateFallbackElement: <LoadingPage></LoadingPage>
+                hydrateFallbackElement: <LoadingPage />
             },
             {
                 path: "Products",
                 element: <Products />,
             },
             {
-                path: "Products/:id",
-                element: <ProtectedRoute><ProductDetailPage/></ProtectedRoute>,
-            },
-            {
                 path: "Login",
                 element: <Login />,
             },
             {
+                path: "SignUp",
+                element: <SignUp />,
+            },
+            {
+                path: "ForgetPassword",
+                element: <ForgetPassword />
+            },
+
+            {
+                path: "Products/:id",
+                element: <ProductDetailPage />,
+            },
+            {
                 path: "Profile",
                 element: <ProtectedRoute><Profile /></ProtectedRoute>,
+            },
+            {
+                path: "UpdateProfile",
+                element: <ProtectedRoute><UpdateProfile /></ProtectedRoute>,
             },
             {
                 path: "MyImports",
@@ -56,23 +73,20 @@ const router = createBrowserRouter([
                 element: <ProtectedRoute><AddExportProduct /></ProtectedRoute>,
             },
             {
-                path: "SignUp",
-                element: <SignUp />,
+                path: "cookies",
+                element: <CookiesPolicy />,
             },
             {
-                path: "UpdateProfile",
-                element: <ProtectedRoute><UpdateProfile /></ProtectedRoute>,
+                path: "About",
+                element: <AboutUs />,
             },
-            {
-                path: "ForgetPassword",
-                element: <ForgetPassword />
-            },
+
             {
                 path: "*",
                 element: <PageNotFound />
             }
         ]
     }
-])
+]);
 
 export default router;

@@ -8,7 +8,7 @@ import useDynamicTitle from "../../Hooks/useDynamicTitle";
 const Home = () => {
   useDynamicTitle("Import Export Hub");
   return (
-    <div className='py-5'>
+    <div className='px-2 bg-base-100'>
       <HeroSlider></HeroSlider>
       <LatestProducts></LatestProducts>
       <WhyChooseUs></WhyChooseUs>

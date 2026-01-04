@@ -1,44 +1,106 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+
+@layer base {
+  :root[data-theme="light"] {
+    --primary: 161 64% 30%; /* Emerald */
+    --secondary: 187 64% 45%; /* Teal */
+    --bg-main: 0 0% 100%; /* White */
+    --bg-soft: 210 40% 98%; /* Light Gray */
+    --text-color: 215 28% 17%; /* Dark Text */
+    --card-bg: 0 0% 100%;
+    --card-border: 210 40% 90%;
+  }
+
+  :root[data-theme="dark"] {
+    --primary: 161 64% 50%; /* Brighter Emerald */
+    --secondary: 187 64% 55%; /* Brighter Teal */
+    --bg-main: 215 28% 10%; /* Dark BG */
+    --bg-soft: 215 28% 14%; /* Darker Soft BG */
+    --text-color: 0 0% 100%; /* White Text */
+    --card-bg: 215 28% 12%;
+    --card-border: 161 64% 30%;
+  }
+
+  body {
+    @apply transition-colors duration-300 ease-in-out;
+    background-color: hsl(var(--bg-main));
+    color: hsl(var(--text-color));
+  }
+}
+
 @layer components {
+
   .btn-primary {
-    @apply btn btn-outline btn-accent bg-emerald-700 text-white font-bold border-none relative mx-4 py-2 px-8 text-base overflow-hidden transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-600 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] rounded-[15px] hover:before:left-0 cursor-pointer;
+    @apply btn font-bold rounded-xl px-8 py-2 transition-all duration-300;
+    background-color: hsl(var(--primary));
+    color: hsl(var(--bg-main));
+  }
+  .btn-primary:hover {
+    @apply shadow-lg scale-105;
+    background-color: hsl(var(--primary) / 0.9);
   }
 
   .btn-secondary {
-    @apply btn btn-outline text-white font-bold border-none relative mx-4 py-2 px-5 text-base overflow-hidden transition-all duration-400 ease-in-out hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-600 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] rounded-xl hover:before:left-0 cursor-pointer;
+    @apply btn font-bold rounded-xl px-6 py-2 transition-all duration-300;
+    background-color: hsl(var(--secondary));
+    color: hsl(var(--bg-main));
   }
-  .gradient1 {
-    @apply bg-gradient-to-l from-emerald-200 via-teal-600 to-emerald-200 bg-clip-text text-transparent;
-  }
-  .gradient2 {
-    @apply  h-1 mx-auto mb-10 mt-2 bg-gradient-to-l from-emerald-700 via-teal-400 to-emerald-700 rounded-full;
+  .btn-secondary:hover {
+    @apply shadow-md scale-105;
+    background-color: hsl(var(--secondary) / 0.85);
   }
 
-  .bg-background1 {
-    background-image: url('./assets/background1.png');
-    background-size: cover;
-    background-position: center;
+  .gradient-text {
+    @apply font-extrabold;
+    background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
-  .bg-background2 {
-    background-image: url('./assets/Hexagon.png');
-    background-size: cover;
-    background-position: center;
+
+  .section-divider {
+    @apply h-1.5 w-24 mx-auto my-6 rounded-full shadow-sm;
+    background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)));
   }
-  .bg-background3 {
-    background-image: url('./assets/Sprinkle.png');
-    background-size: cover;
-    background-position: center;
+
+  .custom-card {
+    @apply rounded-3xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border;
+    background-color: hsl(var(--card-bg));
+    border-color: hsl(var(--card-border));
+    color: hsl(var(--text-color));
   }
-  .bg-background4 {
-    background-image: url('./assets/background1.png');
-    background-size: cover;
-    background-position: center;
+
+  .bg-light-mesh {
+    background-color: hsl(var(--bg-soft));
+    background-image:
+      radial-gradient(at 0% 0%, hsla(var(--primary)/0.1) 0, transparent 50%),
+      radial-gradient(at 50% 0%, hsla(var(--secondary)/0.1) 0, transparent 50%);
   }
-  .bg-background5 {
-    background-image: url('./assets/background3.png');
-    background-size: cover;
-    background-position: center;
+
+  .bg-dark-mesh {
+    background-color: hsl(var(--bg-main));
+    background-image:
+      radial-gradient(at 0% 0%, hsla(var(--primary)/0.05) 0, transparent 50%),
+      radial-gradient(at 50% 0%, hsla(var(--secondary)/0.05) 0, transparent 50%);
   }
+
+  @keyframes slow-zoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+  }
+  .animate-slow-zoom {
+    animation: slow-zoom 20s ease-in-out infinite alternate;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.1);
 }

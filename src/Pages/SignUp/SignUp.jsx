@@ -1,105 +1,249 @@
-import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
-import { Link, useLocation, useNavigate } from 'react-router'
-import { auth } from '../../Firebase/Firebase.config';
-import { toast } from 'react-hot-toast';
-import { useContext, useState } from 'react';
+
+
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  updateProfile,
+} from "firebase/auth";
+import { Link, useLocation, useNavigate } from "react-router";
+import { auth } from "../../Firebase/Firebase.config";
+import { toast } from "react-hot-toast";
+import { useContext, useState, useEffect } from "react";
 import { GoogleAuthProvider } from "firebase/auth";
-import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { AuthContext } from '../../Context/AuthContext';
-import useDynamicTitle from '../../Hooks/useDynamicTitle';
+import { AuthContext } from "../../Context/AuthContext";
+import useDynamicTitle from "../../Hooks/useDynamicTitle";
+import { useForm } from "react-hook-form";
+import {
+  FaGoogle,
+  FaEye,
+  FaEyeSlash,
+  FaUser,
+  FaImage,
+  FaEnvelope,
+} from "react-icons/fa";
 
 const SignUp = () => {
-    const { user, setUser } = useContext(AuthContext);
-    const provider = new GoogleAuthProvider();
-    const userLocation = useLocation();
-    const [show, setShow] = useState(false)
-    const location = userLocation.state || "/";
-    const navigate = useNavigate();
-    useDynamicTitle("SignUp");
-    const handleSignup = (e) => {
-        e.preventDefault();
-        const displayName = e.target.Name?.value;
-        const photoURL = e.target.Photo?.value;
-        const Email = e.target.Email?.value;
-        const Password = e.target.Password?.value;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(Email)) {
-            toast.error("Please enter a valid email address!");
-            return;
-        }
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-        if (!passwordRegex.test(Password)) {
-            toast.error("Password must be at least 6 characters and contain both uppercase and lowercase letters");
-            return;
-        }
-        createUserWithEmailAndPassword(auth, Email, Password)
-        .then((res) => {
-            updateProfile(res.user, { displayName, photoURL })
-            .then(() => {
-                toast.success("Signed Up Successful");
-                navigate(location, { replace: true });
-            })
-            .catch((e) => {
-                toast.error(e.message)
-            })
-        })
-        .catch((e) => {
-            toast.error(e.message)
-        })
+  const { user, setUser } = useContext(AuthContext);
+  const provider = new GoogleAuthProvider();
+  const [show, setShow] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  useDynamicTitle("Create Account");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  // ✅ AOS init
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
+  // ✅ logged in user redirect (IMPORTANT FIX)
+  useEffect(() => {
+    if (user) {
+      navigate("/", { replace: true });
     }
-    const handleGoogleLogin = () => {
-        signInWithPopup(auth, provider)
-        .then((res) => {
-            setUser(res.user);
-            toast.success("Login Successful");
-            navigate(location, { replace: true });
-        })
-        .catch((e) => {
-            toast.error(e.message)
-        })
+  }, [user, navigate]);
+
+  // ================= EMAIL SIGNUP =================
+  const onSubmit = async (data) => {
+    const { Name, Email, Photo, Password } = data;
+
+    try {
+      const res = await createUserWithEmailAndPassword(
+        auth,
+        Email,
+        Password
+      );
+
+      await updateProfile(res.user, {
+        displayName: Name,
+        photoURL: Photo,
+      });
+
+      // ✅ Save user in database
+      const dbRes = await fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: Name,
+          email: Email,
+          photoURL: Photo,
+          role: "user",
+        }),
+      });
+
+      const savedUser = await dbRes.json();
+
+      setUser({
+        ...res.user,
+        role: savedUser.role || "user",
+      });
+
+      toast.success("Account created successfully!");
+      navigate(from, { replace: true });
+    } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        toast.error("Email already in use!");
+      } else {
+        toast.error(error.message);
+      }
     }
-    const [email, setEmail] = useState("");
-    const handleForgetPassword = () => {
-        navigate("/forgetPassword", { state: { email } });
+  };
+
+  // ================= GOOGLE SIGNUP =================
+  const handleGoogleSignup = async () => {
+    try {
+      const res = await signInWithPopup(auth, provider);
+
+      const dbRes = await fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: res.user.displayName,
+          email: res.user.email,
+          photoURL: res.user.photoURL,
+          role: "user",
+        }),
+      });
+
+      const savedUser = await dbRes.json();
+
+      setUser({
+        ...res.user,
+        role: savedUser.role || "user",
+      });
+
+      toast.success("Signed up with Google!");
+      navigate(from, { replace: true });
+    } catch (error) {
+      toast.error(error.message);
     }
-    useEffect(() => {
-        AOS.init({ duration: 2000 });
-    }, []);
-    return (
-        <div className='flex flex-col justify-center items-center flex-1 min-h-scree'>
-            <div data-aos="fade-up" className='container mx-auto '>
-                <div className='flex flex-col justify-center items-center p-5' >
-                    <fieldset className="fieldset bg-background1 border-base-200 rounded-box w-xs border p-4 text-white">
-                        {user ? '' : <h1 className='text-center font-bold text-emerald-800 text-2xl'>Sign Up</h1>}
-                        <form onSubmit={handleSignup}>
-                            <input type="text" name='Name' className="input bg-white text-sm text-black my-5" placeholder="Enter Name " />
-                            <input type="email" name='Email' onChange={(e) => setEmail(e.target.value)}
-                                className="input bg-white text-sm text-black" placeholder="Enter Email Address" />
-                            <input type="text" name='Photo' className="input bg-white text-sm text-black my-5" placeholder="Enter Photo url" />
-                            <div className='flex justify-between items-center relative'>
-                                <input type={show ? "password" : "text"} name='Password' className="input bg-white text-sm text-black" placeholder={show ? "••••••••" : "Enter Password "} /><span
-                                    onClick={() => setShow(!show)}
-                                    className="absolute right-3  cursor-pointer text-lg">
-                                    {show ? "👁️" : "👀"}
-                                </span>
-                            </div>
-                            <button className="btn btn-neutral mt-4 hover:text-lg hover:bg-emerald-600 bg-emerald-400 font-bold w-full text-black border-none shadow-none">Sign Up</button>
-                        </form>
-                        <button onClick={handleGoogleLogin} className="btn bg-white font-bold w-full text-black border-[#e5e5e5] my-4 shadow-none hover:text-lg">
-                            <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
-                            Continue with Google
-                        </button>
-                        <div>
-                            <button onClick={handleForgetPassword} className='text-black  hover:underline cursor-pointer text-[15px]'>Forget Password</button>
-                            <p className='text-black text-[15px] mt-2'>Already Have An Account?  Go to <Link to='/login' className='font-bold text-blue-400'>Login</Link></p>
-                        </div>
-                    </fieldset>
-                </div>
-            </div>
+  };
+
+  return (
+    <div className="min-h-[90vh] flex items-center justify-center px-4">
+      <div
+        data-aos="zoom-in"
+        className="custom-card w-full max-w-md p-5 shadow-lg rounded-2xl border border-emerald-400"
+      >
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-black gradient-text">
+            Create Your Account
+          </h1>
+          <p className="text-gray-500 text-sm mt-2">
+            Join as a user — admin access can be granted later
+          </p>
         </div>
-    )
-}
+
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Name */}
+          <div>
+            <label className="label-text font-semibold">Full Name</label>
+            <div className="relative">
+              <FaUser className="absolute left-3 top-4 text-emerald-500" />
+              <input
+                type="text"
+                className="input input-bordered w-full pl-10"
+                placeholder="Enter your name"
+                {...register("Name", { required: "Name is required" })}
+              />
+            </div>
+            {errors.Name && (
+              <p className="text-red-500 text-xs">{errors.Name.message}</p>
+            )}
+          </div>
+
+          {/* Email */}
+          <div>
+            <label className="label-text font-semibold">Email</label>
+            <div className="relative">
+              <FaEnvelope className="absolute left-3 top-4 text-emerald-500" />
+              <input
+                type="email"
+                className="input input-bordered w-full pl-10"
+                placeholder="Enter your email"
+                {...register("Email", {
+                  required: "Email is required",
+                })}
+              />
+            </div>
+            {errors.Email && (
+              <p className="text-red-500 text-xs">{errors.Email.message}</p>
+            )}
+          </div>
+
+          {/* Photo */}
+          <div>
+            <label className="label-text font-semibold">Photo URL</label>
+            <div className="relative">
+              <FaImage className="absolute left-3 top-4 text-emerald-500" />
+              <input
+                type="url"
+                className="input input-bordered w-full pl-10"
+                placeholder="https://photo.url"
+                {...register("Photo", { required: "Photo URL is required" })}
+              />
+            </div>
+          </div>
+
+          {/* Password */}
+          <div>
+            <label className="label-text font-semibold">Password</label>
+            <div className="relative">
+              <input
+                type={show ? "text" : "password"}
+                className="input input-bordered w-full pr-10"
+                placeholder="••••••••"
+                {...register("Password", {
+                  required: "Password required",
+                  minLength: { value: 6, message: "Minimum 6 characters" },
+                })}
+              />
+              <span
+                onClick={() => setShow(!show)}
+                className="absolute right-3 top-3 cursor-pointer text-gray-400"
+              >
+                {show ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
+          </div>
+
+          <button className="btn-primary w-full">
+            Create Account
+          </button>
+        </form>
+
+        <div className="divider my-6">OR</div>
+
+        <button
+          onClick={handleGoogleSignup}
+          className="btn btn-outline w-full flex items-center gap-3 rounded-xl"
+        >
+          <FaGoogle className="text-emerald-500" />
+          Continue with Google
+        </button>
+
+        <p className="text-center mt-6 text-sm">
+          Already have an account?
+          <Link
+            to="/login"
+            className="text-emerald-600 font-bold ml-2"
+          >
+            Login
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
+};
 
 export default SignUp;
