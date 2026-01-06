@@ -19,6 +19,10 @@ import MyExports from "../Pages/MyExports/MyExports";
 import LoadingPage from "../Pages/LoadingPage/LoadingPage";
 import CookiesPolicy from "../Components/CookiesConsent/CookiesConsent";
 import AboutUs from "../Pages/AboutUs/AboutUs";
+import Dashboard from "../Pages/DashboardLayout/Dashboard";
+import AllUsers from "../Pages/DashboardLayout/AllUsers";
+import ManageProducts from "../Pages/DashboardLayout/ManageProducts";
+import DashboardOverview from "../Pages/DashboardLayout/DashboardOverview";
 
 const router = createBrowserRouter([
     {
@@ -52,26 +56,7 @@ const router = createBrowserRouter([
                 path: "Products/:id",
                 element: <ProductDetailPage />,
             },
-            {
-                path: "Profile",
-                element: <ProtectedRoute><Profile /></ProtectedRoute>,
-            },
-            {
-                path: "UpdateProfile",
-                element: <ProtectedRoute><UpdateProfile /></ProtectedRoute>,
-            },
-            {
-                path: "MyImports",
-                element: <ProtectedRoute><MyImports /></ProtectedRoute>,
-            },
-            {
-                path: "MyExports",
-                element: <ProtectedRoute><MyExports /></ProtectedRoute>,
-            },
-            {
-                path: "AddExportProduct",
-                element: <ProtectedRoute><AddExportProduct /></ProtectedRoute>,
-            },
+             
             {
                 path: "cookies",
                 element: <CookiesPolicy />,
@@ -80,13 +65,54 @@ const router = createBrowserRouter([
                 path: "About",
                 element: <AboutUs />,
             },
-
             {
                 path: "*",
                 element: <PageNotFound />
             }
         ]
-    }
+    },
+    {
+        path: "/dashboard",
+        element: <ProtectedRoute> <Dashboard /> </ProtectedRoute>,
+        errorElement: <ErrorPage />,
+        children: [
+            { 
+                path: "/dashboard", 
+                element: <DashboardOverview /> 
+            },
+
+            { 
+                path: "all-users", 
+                element: <AllUsers /> },
+            {
+                path: "manage-products",
+                element: <ManageProducts />
+            },
+            {
+                path: "profile",
+                element: <Profile />,
+            },
+            {
+                path: "updateProfile",
+                element: <UpdateProfile />,
+            },
+             {
+                path: "MyImports",
+                element: <MyImports />,
+            },
+             {
+                path: "MyExports",
+                element: <MyExports />,
+            },
+
+            { 
+                path: "add-product", 
+                element: <AddExportProduct /> 
+            },
+        ]
+
+    },
+
 ]);
 
 export default router;

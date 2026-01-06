@@ -29,9 +29,7 @@ const Navbar = () => {
     ];
 
     const privateLinks = [
-        { to: "/myImports", label: "My Imports" },
-        { to: "/myExports", label: "My Exports" },
-        { to: "/addExportProduct", label: "Add Export" },
+       
         { to: "/dashboard", label: "Dashboard" },
     ];
 
@@ -137,7 +135,7 @@ const Navbar = () => {
 
                                     <li className="mb-1">
                                         <Link
-                                            to="/profile"
+                                            to="/dashboard/profile"
                                             onClick={() => setProfileOpen(false)}
                                             className="btn btn-ghost w-full text-left rounded-lg hover:bg-primary text-primary font-bold hover:text-white transition"
                                         >
@@ -147,7 +145,7 @@ const Navbar = () => {
 
                                     <li className="mb-2">
                                         <Link
-                                            to="/updateProfile"
+                                            to="/dashboard/updateProfile"
                                             onClick={() => setProfileOpen(false)}
                                             className="btn text-primary font-bold btn-ghost w-full text-left rounded-lg hover:bg-primary hover:text-white transition"
                                         >
