@@ -1,5 +1,3 @@
-
-
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../Layouts/Layout";
 import Home from "../Pages/Home/Home";
@@ -56,7 +54,7 @@ const router = createBrowserRouter([
                 path: "Products/:id",
                 element: <ProductDetailPage />,
             },
-             
+
             {
                 path: "cookies",
                 element: <CookiesPolicy />,
@@ -76,14 +74,15 @@ const router = createBrowserRouter([
         element: <ProtectedRoute> <Dashboard /> </ProtectedRoute>,
         errorElement: <ErrorPage />,
         children: [
-            { 
-                path: "/dashboard", 
-                element: <DashboardOverview /> 
+            {
+                path: "/dashboard",
+                element: <DashboardOverview />
             },
 
-            { 
-                path: "all-users", 
-                element: <AllUsers /> },
+            {
+                path: "all-users",
+                element: <AllUsers />
+            },
             {
                 path: "manage-products",
                 element: <ManageProducts />
@@ -96,18 +95,18 @@ const router = createBrowserRouter([
                 path: "updateProfile",
                 element: <UpdateProfile />,
             },
-             {
+            {
                 path: "MyImports",
                 element: <MyImports />,
             },
-             {
+            {
                 path: "MyExports",
                 element: <MyExports />,
             },
 
-            { 
-                path: "add-product", 
-                element: <AddExportProduct /> 
+            {
+                path: "add-product",
+                element: <AddExportProduct />
             },
         ]
 
