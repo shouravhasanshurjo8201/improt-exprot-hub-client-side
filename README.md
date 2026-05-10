@@ -1,23 +1,47 @@
-# Import Export Hub
+# 🌍 Import Export Hub – Global Trade Management Platform
 
-**Live Site:** 
-https://import-export-hub-25.netlify.app
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://import-export-hub-22.netlify.app)
+[![Tech Stack](https://img.shields.io/badge/Stack-MERN-blue)](https://mongodb.com)
 
-## Project Overview
-Import Export Hub is a modern web platform that allows users to browse, export, and import products easily. The platform is designed for both exporters and importers, providing a seamless experience for global trade management.
+**Import Export Hub** is a specialized full-stack web platform designed to streamline global trade management. It provides a seamless ecosystem for **Exporters** and **Importers** to manage their operations with role-specific workflows, data portability, and real-time product discovery.
 
-## Features
-- **User Roles:** Separate roles for "Exporter" and "Importer". Exporters can export products, importers can import products.
-- **Product Management:** View all products in a responsive 3-column grid with product details like name, image, price, rating, origin country, and available quantity.
-- **Search Functionality:** Quickly search products by name with real-time filtering.
-- **CSV Export:** Export all data from "My Exports" page as a CSV file with a single click.
-- **Responsive & Interactive UI:** TailwindCSS powered design with animations using AOS for smooth scrolling effects.
+---
 
-## Technologies Used
-- React.js
-- Node.js & Express.js
-- MongoDB
-- TailwindCSS
-- AOS (Animate On Scroll)
-- React Router
+## 🚀 Key Features
 
+- **🔑 Dual-Role Architecture:** Specialized dashboards for "Exporter" and "Importer" roles with restricted, role-specific actions and private routes.
+- **📊 Data Portability:** Integrated a **One-Click CSV Export** system, allowing users to download their personal trade data (My Exports) instantly.
+- **🔍 Real-time Discovery:** Advanced search and filtering engine for exploring global products with zero-latency updates.
+- **📱 Premium UI/UX:** Built with a mobile-first approach, featuring a 3-column responsive grid, **AOS animations**, and modern design elements.
+- **🛡️ Secure Operations:** Implemented secure authentication and data handling using **Firebase**, **JWT**, and environment variables.
+
+---
+
+## 🛠️ Technologies Used
+
+| Category | Tools & Technologies |
+| :--- | :--- |
+| **Frontend** | React.js, Tailwind CSS, Framer Motion, AOS (Animate On Scroll) |
+| **Backend** | Node.js, Express.js, RESTful APIs |
+| **Database** | MongoDB (Mongoose), Firebase Authentication |
+| **Security** | JSON Web Token (JWT), Dotenv, CORS |
+| **Deployment** | Netlify (Frontend), Vercel/Render (Backend) |
+
+---
+
+## 📸 Core Modules
+
+- **Exporter Dashboard:** Tools to add, edit, and track products ready for international export.
+- **Importer Dashboard:** Advanced interface to browse global listings and manage imported inventory.
+- **Product Management:** Interactive product cards with price, rating, and origin country details.
+- **Search Engine:** Dynamic name-based filtering for a smooth browsing experience.
+
+---
+
+## 🏁 Getting Started (Local Setup)
+
+Follow these steps to run the project locally:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/shouravhasanshurjo8201/improt-exprot-hub-client-side
