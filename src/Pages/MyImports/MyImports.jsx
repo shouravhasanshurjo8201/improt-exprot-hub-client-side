@@ -45,7 +45,7 @@ const MyImports = () => {
             });
         }
     };
-    
+
     if (loading || isLoading) {
         return <LoadingPage />;
     }
@@ -71,8 +71,8 @@ const MyImports = () => {
             </div>
             <div data-aos="fade-up" className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {imports.map((item) => (
-                    <div data-aos="fade-up" key={item._id}  className=" bg-background4 rounded-2xl shadow-md p-4 hover:shadow-lg transition hover:scale-105 duration-300 ease-in-out" >
-                        <img src={item.ProductImage}  alt={item.ProductName}  className="w-full h-48 object-cover rounded-xl mb-3"/>
+                    <div data-aos="fade-up" key={item._id} className=" bg-background4 rounded-2xl shadow-md p-4 hover:shadow-lg transition hover:scale-105 duration-300 ease-in-out" >
+                        <img src={item.ProductImage} alt={item.ProductName} className="w-full h-48 object-cover rounded-xl mb-3" />
                         <div>
                             <h3 className="text-xl text-black font-bold mb-2">{item.ProductName}</h3>
                             <div className="flex justify-between items-center px-2">
