@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router";
 import useDynamicTitle from "../../Hooks/useDynamicTitle";
-import { FaHome, FaArrowLeft,  } from "react-icons/fa";
+import { FaHome, FaArrowLeft, } from "react-icons/fa";
 
 const PageNotFound = () => {
   useDynamicTitle("Page Not Found");
@@ -8,14 +8,14 @@ const PageNotFound = () => {
 
   return (
     <div className="flex flex-col justify-center items-center px-6">
-      
+
       <div className="relative">
         <h1 className="text-[12rem] md:text-[18rem] font-black text-red-400 select-none">
           404
         </h1>
         <div className="absolute inset-0 flex flex-col justify-center items-center">
           <div className="w-64 h-64 bg-emerald-200/50 rounded-full blur-3xl absolute -z-10 animate-pulse"></div>
-          
+
         </div>
       </div>
 
@@ -26,15 +26,15 @@ const PageNotFound = () => {
       </div>
 
       <div className="flex flex-wrap justify-center gap-4 mt-10">
-        <button 
+        <button
           onClick={() => navigate(-1)}
           className="flex items-center gap-2 px-6 py-1 border-2 border-emerald-500 text-emerald-600 font-bold rounded-xl hover:bg-emerald-50 transition-all active:scale-95"
         >
           <FaArrowLeft /> Go Back
         </button>
 
-        <Link 
-          to="/" 
+        <Link
+          to="/"
           className="btn-primary "
         >
           <FaHome /> Back to Home
