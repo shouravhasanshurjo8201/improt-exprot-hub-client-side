@@ -1,4 +1,3 @@
-
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
@@ -47,7 +46,6 @@ const ProductDetailPage = () => {
     Reviews,
     RelatedItems,
   } = product;
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
