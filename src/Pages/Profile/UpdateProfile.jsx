@@ -1,4 +1,3 @@
-
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";

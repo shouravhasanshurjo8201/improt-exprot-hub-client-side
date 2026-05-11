@@ -1,10 +1,9 @@
-
-
 import {
     createUserWithEmailAndPassword,
     signInWithPopup,
     updateProfile,
 } from "firebase/auth";
+
 import { Link, useLocation, useNavigate } from "react-router";
 import { auth } from "../../Firebase/Firebase.config";
 import { toast } from "react-hot-toast";
@@ -105,7 +104,6 @@ const SignUp = () => {
     const handleGoogleSignup = async () => {
         try {
             const res = await signInWithPopup(auth, provider);
-
             const response = await fetch("https://improt-exprot-hub-server-side.vercel.app/login-user", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -118,7 +116,6 @@ const SignUp = () => {
             });
 
             const loginResult = await response.json();
-
             const dbRes = await fetch(
                 `https://improt-exprot-hub-server-side.vercel.app/users/${res.user.email}`
             );
@@ -151,7 +148,7 @@ const SignUp = () => {
                         Create Your Account
                     </h1>
                     <p className="text-gray-500 text-sm mt-2">
-                        Join as a user — admin access can be granted later
+                        Join as a user admin access can be granted later
                     </p>
                 </div>
 
