@@ -5,7 +5,7 @@ const AllUsers = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        fetch("https://improt-exprot-hub-server-side.vercel.app/users") 
+        fetch("https://improt-exprot-hub-server-side.vercel.app/users")
             .then(res => res.json())
             .then(data => setUsers(data));
     }, []);
@@ -16,10 +16,10 @@ const AllUsers = () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ role: "admin" })
         })
-        .then(res => res.json())
-        .then(() => {
-            toast.success("User is now Admin!");
-        });
+            .then(res => res.json())
+            .then(() => {
+                toast.success("User is now Admin!");
+            });
     };
 
     return (
