@@ -46,7 +46,9 @@ const ManageProducts = () => {
         });
     };
 
-    if (loading) return <div className="flex justify-center py-20"><span className="loading loading-bars loading-lg text-emerald-500"></span></div>;
+    if (loading) return <div className="flex justify-center py-20">
+        <span className="loading loading-bars loading-lg text-emerald-500"></span>
+    </div>;
 
     return (
         <div className="rounded-xl p-6 md:p-10 shadow-sm border border-gray-100 dark:border-zinc-800">
@@ -55,7 +57,6 @@ const ManageProducts = () => {
                     <h2 className="text-2xl font-black text-zinc-800 dark:text-white">Manage All <span className="text-emerald-500">Products</span></h2>
                     <p className="text-sm text-gray-400">Total Products: {products.length}</p>
                 </div>
-
             </div>
 
             <div className="overflow-x-auto">
