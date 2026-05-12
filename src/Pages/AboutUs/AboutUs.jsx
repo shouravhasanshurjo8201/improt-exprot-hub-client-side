@@ -47,7 +47,8 @@ const AboutUs = () => {
         <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
           <span className="gradient-text">About</span>
         </h2>
-        <div className="section-divider w-6/12 md:w-4/12"></div>        <p className="text-gray-600 dark:text-gray-400 font-medium text-lg max-w-3xl mx-auto leading-relaxed">
+        <div className="section-divider w-6/12 md:w-4/12"></div>
+        <p className="text-gray-600 dark:text-gray-400 font-medium text-lg max-w-3xl mx-auto leading-relaxed">
           Welcome to our global trade hub! We bridge the gap between continents, making import-export operations{" "}
           <span className="text-emerald-600 font-bold">simple, secure, and transparent</span> for businesses of all sizes.
         </p>
@@ -58,7 +59,7 @@ const AboutUs = () => {
           <div
             key={card.id}
             data-aos={card.aos}
-            data-aos-delay={index * 150} 
+            data-aos-delay={index * 150}
             className="group  p-8 rounded-[2.5rem] shadow-sm border border-emerald-100 dark:border-neutral-500 hover:border-emerald-500 transition-all duration-500"
           >
             <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-500/20 rounded-2xl flex items-center justify-center text-emerald-600 text-3xl mb-6 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all">
@@ -75,7 +76,7 @@ const AboutUs = () => {
           <div
             key={stat.id}
             data-aos="fade-up"
-            data-aos-delay={idx * 200} 
+            data-aos-delay={idx * 200}
             className="flex flex-col items-center text-center space-y-2"
           >
             <div className="text-4xl text-emerald-500">{stat.icon}</div>
@@ -84,7 +85,6 @@ const AboutUs = () => {
           </div>
         ))}
       </div>
-
     </section>
   );
 };
