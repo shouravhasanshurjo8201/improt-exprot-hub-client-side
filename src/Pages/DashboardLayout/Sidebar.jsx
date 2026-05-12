@@ -17,7 +17,7 @@ const Sidebar = ({ role }) => {
   }
 
   return (
-    <aside className="w-64 bg-white shadow flex-shrink-0">
+    <aside className="w-64 bg-white shadow shrink-0">
       <div className="p-6 font-bold text-xl border-b">Menu</div>
       <ul className="menu p-4 space-y-2">
         {menuItems.map((item) => (
