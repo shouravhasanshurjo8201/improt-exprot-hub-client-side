@@ -1,4 +1,3 @@
-
 import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { auth } from "../../Firebase/Firebase.config";
@@ -53,13 +52,11 @@ const Login = () => {
             let dbUser = {};
 
             if (dbRes.ok) {
-                const text = await dbRes.text(); 
-                dbUser = text ? JSON.parse(text) : {}; 
+                const text = await dbRes.text();
+                dbUser = text ? JSON.parse(text) : {};
             }
 
-
             console.log(dbUser);
-
             console.log("Database User Info:", dbUser);
 
             const loggedUser = {
