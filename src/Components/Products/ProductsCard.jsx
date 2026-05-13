@@ -40,7 +40,7 @@ const ProductsCard = ({ Product, loading }) => {
       </div>
 
       {/* Content */}
-      <div className="p-6 flex flex-col flex-grow">
+      <div className="p-6 flex flex-col grow">
         <div className="flex justify-between items-start mb-2">
           <h3 className="text-xl font-bold text-base-800 dark:text-base-50 group-hover:text-emerald-600 transition-colors line-clamp-1">
             {Product.ProductName}
@@ -58,7 +58,7 @@ const ProductsCard = ({ Product, loading }) => {
           {Product.Description || "No description available."}
         </p>
 
-        <div className="space-y-3 mt-4 flex-grow">
+        <div className="space-y-3 mt-4 grow">
           {/* Stock Info */}
           <div className="flex justify-between items-center text-sm">
             <p className="flex items-center gap-2 ">
