@@ -1,4 +1,3 @@
-
 import { useContext, useState, useEffect } from "react";
 import { NavLink, Link, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
@@ -29,7 +28,7 @@ const Navbar = () => {
     ];
 
     const privateLinks = [
-       
+
         { to: "/dashboard", label: "Dashboard" },
     ];
 
@@ -57,7 +56,7 @@ const Navbar = () => {
     };
 
     return (
-        <div className="w-full sticky top-0 z-[1000] bg-base-100 shadow-md border-b border-base-300">
+        <div className="w-full sticky top-0 z-1000 bg-base-100 shadow-md border-b border-base-300">
             <div className="container mx-auto navbar py-3">
 
                 {/* Navbar Start */}
@@ -71,7 +70,7 @@ const Navbar = () => {
                             ☰
                         </button>
                         {mobileOpen && (
-                            <ul className="menu menu-sm dropdown-content mt-3 p-4 gap-2 shadow-xl bg-base-100 dark:bg-base-100 rounded-2xl w-40 z-[100]">
+                            <ul className="menu menu-sm dropdown-content mt-3 p-4 gap-2 shadow-xl bg-base-100 dark:bg-base-100 rounded-2xl w-40 z-100">
                                 {renderLinks(publicLinks)}
                                 {user && renderLinks(privateLinks)}
                             </ul>
@@ -121,7 +120,7 @@ const Navbar = () => {
                             {/* Profile Dropdown */}
                             {profileOpen && (
 
-                                <ul className="absolute right-0 mt-3 md:mt-5 p-4 w-40 md:w-48 bg-base-100 shadow-xl rounded-b-2xl z-[100] text-base-100 dark:text-base-100">
+                                <ul className="absolute right-0 mt-3 md:mt-5 p-4 w-40 md:w-48 bg-base-100 shadow-xl rounded-b-2xl z-100 text-base-100 dark:text-base-100">
 
                                     <li className="mb-1">
                                         <Link
@@ -164,7 +163,6 @@ const Navbar = () => {
                                         </button>
                                     </li>
                                 </ul>
-
                             )}
                         </div>
                     ) : (
