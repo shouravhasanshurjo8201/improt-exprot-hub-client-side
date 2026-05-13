@@ -1,4 +1,3 @@
-
 import { FaShieldAlt, FaShippingFast, FaHandshake, FaGlobe } from "react-icons/fa";
 import { useEffect } from "react";
 import AOS from "aos";
@@ -49,7 +48,7 @@ const WhyChooseUs = () => {
       <div className="container mx-auto">
         <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
-             <span className="gradient-text">Why Choose Import Export Hub?</span>
+            <span className="gradient-text">Why Choose Import Export Hub?</span>
           </h2>
           <div className="section-divider w-4/12 md:w-6/12"></div>
           <p className="max-w-xl mx-auto">
@@ -60,11 +59,10 @@ const WhyChooseUs = () => {
         <div className="flex flex-col lg:flex-row items-center gap-12">
           <div className="w-full lg:w-1/2" data-aos="fade-right">
             <div className="relative">
-              
-              <img 
-                src="https://oneunionsolutions.com/wp-content/uploads/2024/09/Scaling-Your_-898-_Blog-img-2.webp" 
-                alt="Logistics" 
-                className="w-full rounded-xl shadow border border-white dark:border-neutral ring-1 ring-emerald-100" 
+              <img
+                src="https://oneunionsolutions.com/wp-content/uploads/2024/09/Scaling-Your_-898-_Blog-img-2.webp"
+                alt="Logistics"
+                className="w-full rounded-xl shadow border border-white dark:border-neutral ring-1 ring-emerald-100"
               />
               <div className="absolute -bottom-6 -right-6 bg-emerald-50 p-6 rounded-2xl shadow-xl border border-emerald-50 hidden md:block">
                 <p className="text-3xl font-bold text-emerald-600">100%</p>
@@ -75,7 +73,7 @@ const WhyChooseUs = () => {
 
           <div className="w-full lg:w-1/2 grid sm:grid-cols-2 gap-6">
             {features.map((feature) => (
-              <div 
+              <div
                 key={feature.id}
                 data-aos="fade-up"
                 data-aos-delay={feature.id * 100}
