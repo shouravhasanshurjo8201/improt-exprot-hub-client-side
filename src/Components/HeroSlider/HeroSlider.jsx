@@ -1,4 +1,3 @@
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Autoplay, EffectFade } from "swiper/modules";
 import { useEffect } from "react";
@@ -62,7 +61,7 @@ const HeroSlider = () => {
               />
 
               {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent flex items-center">
+              <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/40 to-transparent flex items-center">
                 <div className="container mx-auto px-6 md:px-12">
                   <div className="max-w-3xl space-y-5">
                     <h1
@@ -79,10 +78,10 @@ const HeroSlider = () => {
                       {slide.desc}
                     </p>
                     <div data-aos="fade-up" data-aos-delay="400" className="pt-4 flex gap-4 flex-wrap">
-                      <Link to="/Products" className="btn-primary !py-4">
+                      <Link to="/Products" className="btn-primary py-4!">
                         Explore Marketplace
                       </Link>
-                      <Link to="/AddExportProduct" className="btn-secondary !bg-white/10 text-white backdrop-blur-md hover:!bg-white/20 !py-4">
+                      <Link to="/AddExportProduct" className="btn-secondary bg-white/10! text-white backdrop-blur-md hover:bg-white/20! py-4!">
                         Start Exporting
                       </Link>
                     </div>
@@ -97,7 +96,7 @@ const HeroSlider = () => {
       {/* Scroll Down Hint */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2">
         <span className="text-white/60 text-xs uppercase tracking-widest font-bold">Scroll Down</span>
-        <div className="w-[4px] h-12 bg-gradient-to-b from-emerald-500 to-transparent animate-bounce"></div>
+        <div className="w-1 h-12 bg-linear-to-b from-emerald-500 to-transparent animate-bounce"></div>
       </div>
     </div>
   );
