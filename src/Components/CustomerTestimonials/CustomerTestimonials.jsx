@@ -1,4 +1,3 @@
-
 import TestimonialCard from "./TestimonialCard";
 import { useEffect } from "react";
 import "aos/dist/aos.css";
@@ -51,7 +50,7 @@ const CustomerTestimonials = () => {
         {/* Section Header */}
         <div className="text-center mb-12" data-aos="fade-up">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-             <span className="gradient-text">What Our Customers Say</span>
+            <span className="gradient-text">What Our Customers Say</span>
           </h2>
           <div className="section-divider w-4/12 md:w-6/12"></div>
           <p className="max-w-2xl mx-auto text-gray-500 dark:text-gray-400">

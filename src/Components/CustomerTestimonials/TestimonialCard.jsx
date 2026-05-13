@@ -1,4 +1,4 @@
-import {  FaStar, FaStarHalfAlt, FaRegStar, FaQuoteRight } from "react-icons/fa";
+import { FaStar, FaStarHalfAlt, FaRegStar, FaQuoteRight } from "react-icons/fa";
 
 const TestimonialCard = ({ testimonial }) => {
     const renderStars = () => {
