@@ -37,11 +37,3 @@
 - **Search Engine:** Dynamic name-based filtering for a smooth browsing experience.
 
 ---
-
-## 🏁 Getting Started (Local Setup)
-
-Follow these steps to run the project locally:
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/shouravhasanshurjo8201/improt-exprot-hub-client-side
