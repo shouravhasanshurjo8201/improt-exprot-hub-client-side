@@ -9,7 +9,6 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div data-aos="fade-up">
             <h2 className="text-2xl font-black mb-5 tracking-tight">
-
               <span className="text-emerald-400 font-bold">Import Export Hub</span>
             </h2>
             <p className="text-sm leading-relaxed text-base-content/70 dark:text-base-content/50 mb-6 italic">
