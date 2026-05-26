@@ -21,8 +21,7 @@ const ProductsCard = ({ Product, loading }) => {
   return (
     <div
       data-aos="fade-up"
-      className="group bg-base=100 dark:bg-base-900 rounded-xl shadow-sm hover:shadow-xl border border-emerald-50 dark:border-emerald-900/30 overflow-hidden transform hover:-translate-y-2 transition-all duration-500 flex flex-col h-full"
-    >
+      className="group bg-base=100 dark:bg-base-900 rounded-xl shadow-sm hover:shadow-xl border border-emerald-50 dark:border-emerald-900/30 overflow-hidden transform hover:-translate-y-2 transition-all duration-500 flex flex-col h-full">
       <div className="relative overflow-hidden h-72">
         <img
           src={Product.ProductImage}

@@ -28,12 +28,10 @@ const Navbar = () => {
     ];
 
     const privateLinks = [
-
         { to: "/dashboard", label: "Dashboard" },
     ];
 
-    const activeClass = ({ isActive }) =>
-        isActive ? "btn-primary shadow-md rounded-xl" : "btn-secondary rounded-xl opacity-90";
+    const activeClass = ({ isActive }) => isActive ? "btn-primary shadow-md rounded-xl" : "btn-secondary rounded-xl opacity-90";
 
     const renderLinks = (links) =>
         links.map((link) => (
@@ -46,27 +44,25 @@ const Navbar = () => {
 
     const handleLogout = () => {
         signOut(auth)
-            .then(() => {
-                setUser(null);
-                toast.success("Logout successful");
-                navigate("/");
-                setProfileOpen(false);
-            })
-            .catch((err) => toast.error(err.message));
+        .then(() => {
+            setUser(null);
+            toast.success("Logout successful");
+            navigate("/");
+            setProfileOpen(false);
+        })
+        .catch((err) => toast.error(err.message));
     };
 
     return (
         <div className="w-full sticky top-0 z-1000 bg-base-100 shadow-md border-b border-base-300">
             <div className="container mx-auto navbar py-3">
-
                 {/* Navbar Start */}
                 <div className="navbar-start flex items-center gap-2">
                     {/* Mobile Menu */}
                     <div className="dropdown">
                         <button
                             className="btn btn-ghost lg:hidden text-2xl"
-                            onClick={() => setMobileOpen(!mobileOpen)}
-                        >
+                            onClick={() => setMobileOpen(!mobileOpen)} >
                             ☰
                         </button>
                         {mobileOpen && (
@@ -97,8 +93,7 @@ const Navbar = () => {
                     <button
                         onClick={toggleTheme}
                         className="btn btn-circle btn-ghost"
-                        title={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
-                    >
+                        title={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"} >
                         {theme === "light" ? <FaMoon size={18} /> : <FaSun size={18} />}
                     </button>
 
@@ -107,8 +102,7 @@ const Navbar = () => {
                             {/* Profile Button */}
                             <button
                                 className="btn btn-ghost btn-circle avatar border-2 border-primary"
-                                onClick={() => setProfileOpen(!profileOpen)}
-                            >
+                                onClick={() => setProfileOpen(!profileOpen)} >
                                 <div className="w-10 rounded-full">
                                     <img
                                         src={user?.photoURL || "https://i.ibb.co/mJR9Qhx/user-placeholder.png"}
@@ -126,8 +120,7 @@ const Navbar = () => {
                                         <Link
                                             to="/dashboard"
                                             onClick={() => setProfileOpen(false)}
-                                            className="btn btn-ghost w-full text-left text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition"
-                                        >
+                                            className="btn btn-ghost w-full text-left text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition">
                                             Dashboard
                                         </Link>
                                     </li>
@@ -136,8 +129,7 @@ const Navbar = () => {
                                         <Link
                                             to="/dashboard/profile"
                                             onClick={() => setProfileOpen(false)}
-                                            className="btn btn-ghost w-full text-left rounded-lg hover:bg-primary text-primary font-bold hover:text-white transition"
-                                        >
+                                            className="btn btn-ghost w-full text-left rounded-lg hover:bg-primary text-primary font-bold hover:text-white transition">
                                             Profile
                                         </Link>
                                     </li>
@@ -146,8 +138,7 @@ const Navbar = () => {
                                         <Link
                                             to="/dashboard/updateProfile"
                                             onClick={() => setProfileOpen(false)}
-                                            className="btn text-primary font-bold btn-ghost w-full text-left rounded-lg hover:bg-primary hover:text-white transition"
-                                        >
+                                            className="btn text-primary font-bold btn-ghost w-full text-left rounded-lg hover:bg-primary hover:text-white transition">
                                             Update Profile
                                         </Link>
                                     </li>
@@ -157,8 +148,7 @@ const Navbar = () => {
                                     <li>
                                         <button
                                             onClick={handleLogout}
-                                            className="btn btn-ghost w-full text-left text-red-500 hover:bg-red-500 hover:text-white rounded-lg transition"
-                                        >
+                                            className="btn btn-ghost w-full text-left text-red-500 hover:bg-red-500 hover:text-white rounded-lg transition">
                                             Logout
                                         </button>
                                     </li>
